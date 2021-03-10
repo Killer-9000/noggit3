@@ -1,7 +1,7 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
 #include <noggit/DBC.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/World.h>
 #include <noggit/wmo_liquid.hpp>
 #include <opengl/context.hpp>

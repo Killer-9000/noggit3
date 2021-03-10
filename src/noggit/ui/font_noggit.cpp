@@ -8,7 +8,7 @@
 
 #include <noggit/ui/font_noggit.hpp>
 #include <noggit/ui/font_noggit.hpp>
-#include <noggit/Log.h>
+#include <util/Log.h>
 
 namespace noggit
 {

@@ -2,7 +2,7 @@
 
 #include <math/bounding_box.hpp>
 #include <noggit/AsyncLoader.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/Model.h>
 #include <noggit/ModelInstance.h>
 #include <noggit/TextureManager.h> // TextureManager, Texture
@@ -29,7 +29,7 @@ void Model::finishLoading()
 
   if (f.isEof())
   {
-    LogError << "Error loading file \"" << filename << "\". Aborting to load model." << std::endl;
+    LOG_ERROR("Error loading file '%s'. Aborting to load model.", filename.c_str());
     finished = true;
     return;
   }
@@ -208,7 +208,7 @@ void Model::initCommon(const MPQFile& f)
     {
       if (texdef[i].nameLen == 0)
       {
-        LogDebug << "Texture " << i << " has a lenght of 0 for '" << filename << std::endl;
+        LOG_ERROR("Texture '%i' has a length of 0 for '%s'.", i, filename.c_str());
         continue;
       }
 
@@ -268,7 +268,7 @@ void Model::initCommon(const MPQFile& f)
     lodname.append("00.skin");
     MPQFile g(lodname.c_str());
     if (g.isEof()) {
-      LogError << "loading skinfile " << lodname << std::endl;
+      LOG_ERROR("Loading skin file '%s'.", lodname.c_str());
       g.close();
       return;
     }
@@ -351,7 +351,7 @@ void Model::fix_shader_id_blend_override()
     // fuckporting check
     if (pass.texture_coord_combo_index + pass.texture_count - 1 >= _texture_unit_lookup.size())
     {
-      LogDebug << "wrong texture coord combo index on fuckported model: " << filename << std::endl;
+      LOG_ERROR("wrong texture coord combo index on fuckported model: '%s'.", filename.c_str());
       // use default stuff
       pass.shader_id = 0;
       pass.texture_count = 1;
@@ -997,12 +997,11 @@ void Model::initAnimated(const MPQFile& f)
       _animation_length[anim.animID] += anim.length;
       _animations_seq_per_id[anim.animID][anim.subAnimID] = anim;
 
-      std::string lodname = filename.substr(0, filename.length() - 3);
-      std::stringstream tempname;
-      tempname << lodname << anim.animID << "-" << anim.subAnimID << ".anim";
-      if (MPQFile::exists(tempname.str()))
+      std::string_view lodName = std::string_view(filename.c_str(), (std::size_t)filename.size() - 3);
+      std::string tempname = fmt::sprintf("%s%i-%i.anim", lodName.data(), anim.animID, anim.subAnimID);
+      if (MPQFile::exists(tempname))
       {
-        animation_files.push_back(std::make_unique<MPQFile>(tempname.str()));
+        animation_files.push_back(std::make_unique<MPQFile>(tempname));
       }
     }
   }
@@ -1036,7 +1035,7 @@ void Model::initAnimated(const MPQFile& f)
       }
       catch (std::logic_error error)
       {
-        LogError << "Loading particles for '" << filename << "' " << error.what() << std::endl;
+        LOG_ERROR("Loading particles for '%s' %s.", filename.c_str(), error.what());
       }      
     }
   }
@@ -1236,7 +1235,7 @@ void ModelLight::setup(int time, opengl::light, int animtime)
   }
   else {
     p = math::vector_4d(tpos, 1.0f);
-    LogError << "Light type " << type << " is unknown." << std::endl;
+    LOG_ERROR("Light type %i is unknown.", type);
   }
  
   // todo: use models' light

@@ -549,7 +549,7 @@ private:
     pGMI = (tGMI) GetProcAddress( hPsapi, "GetModuleInformation" );
     if ( (pEPM == nullptr) || (pGMFNE == nullptr) || (pGMBN == nullptr) || (pGMI == nullptr) )
     {
-      // we couldn´t find all functions
+      // we couldnï¿½t find all functions
       FreeLibrary(hPsapi);
       return FALSE;
     }
@@ -1126,9 +1126,9 @@ void StackWalker::OnSymInit(LPCSTR szSearchPath, DWORD symOptions, LPCSTR szUser
 #endif
 }
 
-#include "../../src/noggit/Log.h"
+#include "../../src/util/Log.h"
 
 void StackWalker::OnOutput(LPCSTR buffer)
 {
-  LogError << buffer << std::endl;
+  LOG_ERROR("%s", buffer);
 }

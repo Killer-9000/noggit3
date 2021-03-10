@@ -1,7 +1,7 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
 #include <noggit/DBC.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/Misc.h>
 #include <noggit/World.h>
 #include <noggit/ui/pushbutton.hpp>
@@ -59,9 +59,8 @@ namespace noggit
       {
         int liquid_id = i->getInt(LiquidTypeDB::ID);
 
-        std::stringstream ss;
-        ss << liquid_id << "-" << LiquidTypeDB::getLiquidName(liquid_id);
-        waterType->addItem (QString::fromUtf8(ss.str().c_str()), QVariant (liquid_id));
+        std::string liquid = fmt::sprintf("%i-%s", liquid_id, LiquidTypeDB::getLiquidName(liquid_id));
+        waterType->addItem (QString::fromUtf8(liquid.c_str()), QVariant (liquid_id));
 
       }
 
@@ -241,9 +240,8 @@ namespace noggit
 
     void water::updateData()
     {
-      std::stringstream mt;
-      mt << _liquid_id << " - " << LiquidTypeDB::getLiquidName(_liquid_id);
-      waterType->setCurrentText (QString::fromStdString (mt.str()));
+      std::string mt = fmt::sprintf("%i - %s", _liquid_id, LiquidTypeDB::getLiquidName(_liquid_id));
+      waterType->setCurrentText (QString::fromStdString (mt));
     }
 
     void water::changeWaterType(int waterint)

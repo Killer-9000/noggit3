@@ -2,7 +2,7 @@
 
 #include <noggit/DBC.h>
 #include <noggit/liquid_layer.hpp>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/TextureManager.h> // TextureManager, Texture
 #include <noggit/World.h>
 #include <opengl/context.hpp>
@@ -105,7 +105,7 @@ void liquid_render::add_liquid_id(int liquid_id)
   {
     try 
     {
-      textures.emplace_back(boost::str(boost::format(filename) % i));
+      textures.emplace_back(fmt::sprintf(filename, i));
     }
     catch (...)
     {

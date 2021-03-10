@@ -2,7 +2,7 @@
 
 #include <noggit/DBC.h>
 #include <noggit/DBCFile.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/World.h>
 #include <noggit/ui/About.h>
 #include <noggit/MapView.h>
@@ -38,9 +38,8 @@ namespace noggit
       : QMainWindow (nullptr)
       , _null_widget (new QWidget (this))
     {
-      std::stringstream title;
-      title << "Noggit - " << STRPRODUCTVER;
-      setWindowTitle (QString::fromStdString (title.str()));
+      std::string title = fmt::sprintf("Noggit - %s", STRPRODUCTVER);
+      setWindowTitle (QString::fromStdString (title));
       setWindowIcon (QIcon (":/icon"));
 
       setCentralWidget (_null_widget);
@@ -163,7 +162,7 @@ namespace noggit
         }
       }
 
-      LogError << "Map with ID " << mapID << " not found. Failed loading." << std::endl;
+      LOG_ERROR("Map with ID '%i' not found. Failed loading.", mapID);
     }
 
     void main_window::build_menu()
@@ -279,7 +278,7 @@ namespace noggit
       std::ifstream f("bookmarks.txt");
       if (!f.is_open())
       {
-        LogDebug << "No bookmarks file." << std::endl;
+        LOG_DEBUG("No bookmarks file.");
         return;
       }
 
@@ -294,9 +293,7 @@ namespace noggit
           continue;
         }
 
-        std::stringstream temp;
-        temp << MapDB::getMapName(mapID) << ": " << AreaDB::getAreaName(areaID);
-        b.name = temp.str();
+        b.name = fmt::sprintf("%s:%s", MapDB::getMapName(mapID), AreaDB::getAreaName(areaID));
         b.mapID = mapID;
         mBookmarks.push_back(b);
       }

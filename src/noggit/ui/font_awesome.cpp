@@ -7,7 +7,7 @@
 #include <QtWidgets/QMessageBox>
 
 #include <noggit/ui/font_awesome.hpp>
-#include <noggit/Log.h>
+#include <util/Log.h>
 
 namespace noggit
 {

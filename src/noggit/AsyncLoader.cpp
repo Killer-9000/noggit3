@@ -12,9 +12,6 @@ void AsyncLoader::process()
 {
   AsyncObject* object = nullptr;
 
-  QSettings settings;
-  bool additional_log = settings.value("additional_file_loading_log", false).toBool();
-
   while (!_stop)
   {
     {    
@@ -52,25 +49,13 @@ void AsyncLoader::process()
 
     try
     {
-      if (additional_log)
-      {
-        std::lock_guard<std::mutex> const lock(_guard);
-        LogDebug << "Loading '" << object->filename << "'" << std::endl;
-      }
-
+      LOG_DEBUG("Loading '%s'", object->filename.c_str());
       object->finishLoading();
+      LOG_DEBUG("Loaded '%s'", object->filename.c_str());
 
-      if (additional_log)
-      {
-        std::lock_guard<std::mutex> const lock(_guard);
-        LogDebug << "Loaded  '" << object->filename << "'" << std::endl;
-      }
-
-      {
-        std::lock_guard<std::mutex> const lock (_guard);
-        _currently_loading.remove (object);
-        _state_changed.notify_all();
-      }
+      std::lock_guard<std::mutex> const lock (_guard);
+      _currently_loading.remove (object);
+      _state_changed.notify_all();
     }
     catch (...)
     {

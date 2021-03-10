@@ -46,7 +46,7 @@ void ChunkWater::from_mclq(std::vector<mclq>& layers)
       case 4:_layers.emplace_back(pos, liquid, 1); break;
       case 6:_layers.emplace_back(pos, liquid, (_use_mclq_green_lava ? 15 : 3)); break;
       default:
-        LogError << "Invalid/unhandled MCLQ liquid type" << std::endl;
+        LOG_DEBUG("Invalid/unhandled MCLQ liquid type.");
         break;
     }
   }

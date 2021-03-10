@@ -6,7 +6,7 @@
 #include <math/trig.hpp>
 #include <math/vector_3d.hpp>
 #include <math/vector_4d.hpp>
-#include <noggit/Log.h>
+#include <util/Log.h>
 
 #include <algorithm>
 #include <cassert>

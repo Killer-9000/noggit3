@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <noggit/Log.h>
+#include <util/Log.h>
 
 #include <atomic>
 #include <condition_variable>
@@ -64,7 +64,7 @@ public:
 
   void error_on_loading()
   {
-    LogError << filename << " could not be loaded" << std::endl;
+    LOG_WARN("%s could not be loaded", filename.c_str());
     _loading_failed = true;
     finished = true;
     _state_changed.notify_all();

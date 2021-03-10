@@ -4,7 +4,7 @@
 
 #include <noggit/AsyncLoader.h>
 #include <noggit/AsyncObject.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MPQ.h>
 
 #include <boost/thread.hpp>
@@ -17,7 +17,7 @@
 namespace noggit
 {
   template<typename T>
-    struct async_object_multimap_with_normalized_key
+  struct async_object_multimap_with_normalized_key
   {
     async_object_multimap_with_normalized_key (std::function<std::string (std::string)> normalize = &mpq::normalized_filename)
       : _normalize (std::move (normalize))
@@ -27,7 +27,7 @@ namespace noggit
     {
       apply ( [&] (std::string const& key, T const&)
               {
-                LogDebug << key << ": " << _counts.at (key) << std::endl;
+                LOG_DEBUG("%s: %l", key, _counts.at (key));
               }
             );
     }
@@ -100,7 +100,7 @@ namespace noggit
     }
     void apply (std::function<void (std::string const&, T const&)> fun) const
     {
-      boost::mutex::scoped_lock lock(_mutex);
+      // boost::mutex::scoped_lock lock(_mutex);
       for (auto const& element : _elements)
       {
         fun (element.first, element.second);

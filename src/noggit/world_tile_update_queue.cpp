@@ -2,7 +2,7 @@
 
 #include <noggit/world_tile_update_queue.hpp>
 
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/ModelInstance.h>
 #include <noggit/WMOInstance.h>
 #include <noggit/World.h>
@@ -12,6 +12,7 @@ namespace noggit
 {
   struct instance_update
   {
+    virtual ~instance_update() { }
     virtual void apply(World* const) = 0;
   };
 
@@ -98,7 +99,7 @@ namespace noggit
 
     if (!_update_queue.empty())
     {
-      LogError << "Update queue deleted with some update pending !" << std::endl;
+      LOG_ERROR("Update queue deleted with some update pending.");
     }
   }
 

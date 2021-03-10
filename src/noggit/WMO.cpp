@@ -2,7 +2,7 @@
 
 #include <math/frustum.hpp>
 #include <noggit/AsyncLoader.h>
-#include <noggit/Log.h> // LogDebug
+#include <util/Log.h> // LogDebug
 #include <noggit/ModelManager.h> // ModelManager
 #include <noggit/TextureManager.h> // TextureManager, Texture
 #include <noggit/WMO.h>
@@ -31,7 +31,7 @@ void WMO::finishLoading ()
 {
   MPQFile f(filename);
   if (f.isEof()) {
-    LogError << "Error loading WMO \"" << filename << "\"." << std::endl;
+    LOG_DEBUG("Error loading WMO '%s'.", filename.c_str());
     return;
   }
 
@@ -454,7 +454,7 @@ std::map<uint32_t, std::vector<wmo_doodad_instance>> WMO::doodads_per_group(uint
 
   if (doodadset >= doodadsets.size())
   {
-    LogError << "Invalid doodadset for instance of wmo " << filename << std::endl;
+    LOG_ERROR("LInvalid doodadset for instance of wmo '%s'", filename.c_str());
     return doodads;
   }
 
@@ -667,8 +667,9 @@ void WMOGroup::load()
   fname.insert (fname.find (".wmo"), curNum.str ());
 
   MPQFile f(fname);
-  if (f.isEof()) {
-    LogError << "Error loading WMO \"" << fname << "\"." << std::endl;
+  if (f.isEof()) 
+  {
+    LOG_ERROR("Error loading WMO '%s'.", fname.c_str());
     return;
   }
 
@@ -1269,13 +1270,17 @@ decltype (WMOManager::_) WMOManager::_;
 
 void WMOManager::report()
 {
-  std::string output = "Still in the WMO manager:\n";
+  bool models = false;
+  std::stringstream output;
+  output << "Still in the WMO manager:\n";
   _.apply ( [&] (std::string const& key, WMO const&)
             {
-              output += " - " + key + "\n";
+              output << " - " + key + "\n";
+              models = true;
             }
           );
-  LogDebug << output;
+  if (models)
+    LOG_ERROR(output.str());
 }
 
 void WMOManager::clear_hidden_wmos()

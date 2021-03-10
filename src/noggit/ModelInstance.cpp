@@ -2,7 +2,7 @@
 
 #include <math/bounding_box.hpp>
 #include <math/frustum.hpp>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/Misc.h> // checkinside
 #include <noggit/Model.h> // Model, etc.
 #include <noggit/ModelInstance.h>

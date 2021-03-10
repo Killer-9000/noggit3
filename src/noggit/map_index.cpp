@@ -36,10 +36,9 @@ MapIndex::MapIndex (const std::string &pBasename, int map_id, World* world)
   _unload_interval = settings.value("unload_interval", 5).toInt();
   _unload_dist = settings.value("unload_dist", 5).toInt();
 
-  std::stringstream filename;
-  filename << "World\\Maps\\" << basename << "\\" << basename << ".wdt";
+  std::string filename = fmt::sprintf("World\\Maps\\%s\\%s.wdt", basename, basename);
 
-  MPQFile theFile(filename.str());
+  MPQFile theFile(filename);
 
   uint32_t fourcc;
   uint32_t size;
@@ -91,11 +90,10 @@ MapIndex::MapIndex (const std::string &pBasename, int map_id, World* world)
       theFile.read(&mTiles[j][i].flags, 4);
       theFile.seekRelative(4);
 
-      std::stringstream adt_filename;
-      adt_filename << "World\\Maps\\" << basename << "\\" << basename << "_" << i << "_" << j << ".adt";
+      std::string adt_filename = fmt::sprintf("World\\Maps\\%s\\%s_%i_%i.adt", basename, basename, i, j);
 
       mTiles[j][i].tile = nullptr;
-      mTiles[j][i].onDisc = MPQFile::existsOnDisk(adt_filename.str());
+      mTiles[j][i].onDisc = MPQFile::existsOnDisk(adt_filename);
 
 			if (mTiles[j][i].onDisc && !(mTiles[j][i].flags & 1))
 			{
@@ -153,10 +151,9 @@ void MapIndex::saveall (World* world)
 
 void MapIndex::save()
 {
-  std::stringstream filename;
-  filename << "World\\Maps\\" << basename << "\\" << basename << ".wdt";
+  std::string filename = fmt::sprintf("World\\Maps\\%s\\%s.wdt", basename, basename);
 
-  //Log << "Saving WDT \"" << filename << "\"." << std::endl;
+  LOG_DEBUG("Saving WDT '%s'.", filename.c_str());
 
   sExtendableArray wdtFile = sExtendableArray();
   int curPos = 0;
@@ -222,7 +219,7 @@ void MapIndex::save()
     //  }
   }
 
-  MPQFile f(filename.str());
+  MPQFile f(filename);
   f.setBuffer(wdtFile.data);
   f.SaveFile();
   f.close();
@@ -328,16 +325,15 @@ MapTile* MapIndex::loadTile(const tile_index& tile, bool reloading)
     return mTiles[tile.z][tile.x].tile.get();
   }
 
-  std::stringstream filename;
-  filename << "World\\Maps\\" << basename << "\\" << basename << "_" << tile.x << "_" << tile.z << ".adt";
+  std::string filename = fmt::sprintf("World\\Maps\\%s\\%s_%i_%i.adt", basename, basename, tile.x, tile.z);
 
-  if (!MPQFile::exists(filename.str()))
+  if (!MPQFile::exists(filename))
   {
-    LogError << "The requested tile \"" << filename.str() << "\" does not exist! Oo" << std::endl;
+    LOG_ERROR("The requested tile '%s' does not exist.", filename.c_str());
     return nullptr;
   }
 
-  mTiles[tile.z][tile.x].tile = std::make_unique<MapTile> (tile.x, tile.z, filename.str(), mBigAlpha, true, use_mclq_green_lava(), reloading, _world);
+  mTiles[tile.z][tile.x].tile = std::make_unique<MapTile> (tile.x, tile.z, filename, mBigAlpha, true, use_mclq_green_lava(), reloading, _world);
 
   MapTile* adt = mTiles[tile.z][tile.x].tile.get();
 
@@ -381,7 +377,7 @@ void MapIndex::unloadTile(const tile_index& tile)
   if (tileLoaded(tile))
   {
     mTiles[tile.z][tile.x].tile = nullptr;
-    Log << "Unload Tile " << tile.x << "-" << tile.z << std::endl;
+    LOG_INFO("Unloaded Tile '%i-%i'.", tile.x, tile.z);
   }
 }
 
@@ -632,9 +628,8 @@ uid_fix_status MapIndex::fixUIDs (World* world, bool cancel_on_model_loading_err
         continue;
       }
 
-      std::stringstream filename;
-      filename << "World\\Maps\\" << basename << "\\" << basename << "_" << x << "_" << z << ".adt";
-      MPQFile file(filename.str());
+      std::string filename = fmt::sprintf("World\\Maps\\%s\\%s_%i_%i.adt", basename, basename, x, z);
+      MPQFile file(filename);
 
       if (file.isEof())
       {
@@ -876,11 +871,10 @@ uid_fix_status MapIndex::fixUIDs (World* world, bool cancel_on_model_loading_err
       // load even the tiles without models in case there are old ones
       // that shouldn't be there to avoid creating new duplicates
 
-      std::stringstream filename;
-      filename << "World\\Maps\\" << basename << "\\" << basename << "_" << x << "_" << z << ".adt";
+      std::string filename = fmt::sprintf("World\\Maps\\%s\\%s_%i_%i.adt", basename, basename, x, z);
 
       // load the tile without the models
-      MapTile tile(x, z, filename.str(), mBigAlpha, false, use_mclq_green_lava(), false, world, tile_mode::uid_fix_all);
+      MapTile tile(x, z, filename, mBigAlpha, false, use_mclq_green_lava(), false, world, tile_mode::uid_fix_all);
       tile.finishLoading();
 
       // add the uids to the tile to be able to save the models
@@ -916,9 +910,8 @@ void MapIndex::searchMaxUID()
         continue;
       }
 
-      std::stringstream filename;
-      filename << "World\\Maps\\" << basename << "\\" << basename << "_" << x << "_" << z << ".adt";
-      highestGUID = std::max(highestGUID, getHighestGUIDFromFile(filename.str()));
+      std::string filename = fmt::sprintf("World\\Maps\\%s\\%s_%i_%i.adt", basename, basename, x, z);
+      highestGUID = std::max(highestGUID, getHighestGUIDFromFile(filename));
     }
   }
 

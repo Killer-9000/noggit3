@@ -2,7 +2,7 @@
 
 #include <noggit/DBC.h>
 #include <noggit/liquid_layer.hpp>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MapChunk.h>
 #include <noggit/Misc.h>
 

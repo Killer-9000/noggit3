@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MPQ.h>
 #include <opengl/texture.hpp>
 

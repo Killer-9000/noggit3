@@ -61,7 +61,7 @@ void Alphamap::readCompressed(MPQFile *f)
 
     if (offset_output + count > 4096)
     {
-      LogError << "Invalid MCAL, uncompressed size is greater than 4096" << std::endl;
+      LOG_DEBUG("Invalid MCAL, uncompressed size is greater than 4096.");
       count = 4096 - offset_output;
     }
 

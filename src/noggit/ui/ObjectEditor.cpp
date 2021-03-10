@@ -366,7 +366,7 @@ namespace noggit
 
         if (selection.which() == eEntry_MapChunk)
         {
-          LogError << "Invalid selection" << std::endl;
+          LOG_ERROR("Invalid selection.");
           return;
         }
 
@@ -399,7 +399,7 @@ namespace noggit
           pos = camera_pos + model_pos;
           break;
         default:
-          LogDebug << "object_editor::pasteObject: unknown paste mode " << pasteMode << std::endl;
+          LOG_DEBUG("Unkown paste mode %i.", pasteMode);
           break;
         }
         
@@ -469,7 +469,7 @@ namespace noggit
         else
         {
           ss << "Error";
-          LogError << "The new selection wasn't a m2 or wmo" << std::endl;
+          LOG_ERROR("The new selection wasn't an M2 or WMO.");
         }
       }
       else

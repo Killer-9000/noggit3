@@ -1,7 +1,7 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
 #include <noggit/AsyncLoader.h> // AsyncLoader
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MPQ.h>
 
 #include <boost/algorithm/string.hpp>
@@ -45,12 +45,12 @@ MPQArchive::MPQArchive(std::string const& filename, bool doListfile)
 {
   if (!SFileOpenArchive (filename.c_str(), 0, MPQ_OPEN_NO_LISTFILE | STREAM_FLAG_READ_ONLY, &_archiveHandle))
   {
-    LogError << "Error opening archive: " << filename << std::endl;
+    LOG_ERROR("Error opening archive: '%s'", filename);
     return;
   }
   else
   {
-    LogDebug << "Opened archive " << filename << std::endl;
+    LOG_DEBUG("Opened archive: '%s'", filename);
   }
 
   finished = !doListfile;
@@ -103,7 +103,7 @@ void MPQArchive::finishLoading()
 
   if (MPQArchive::allFinishedLoading())
   {
-    LogDebug << "Completed listfile loading: " << gListfile.size() << " files\n";
+    LOG_DEBUG("Completed listfile loading: %l files.", gListfile.size());
   }
 }
 
@@ -302,20 +302,20 @@ char const* MPQFile::getPointer() const
 
 void MPQFile::SaveFile()
 {
-  LogDebug << "Save file to: " << _disk_path << std::endl;
+  LOG_DEBUG("Save file to: %s.", _disk_path.string().c_str());
 
   auto const directory_name (_disk_path.parent_path());
   boost::system::error_code ec;
   boost::filesystem::create_directories (directory_name, ec);
   if (ec)
   {
-    LogError << "Creating directory \"" << directory_name << "\" failed: " << ec << ". Saving is highly likely to fail." << std::endl;
+    LOG_DEBUG("Creating directory '%s' failed: %i. Saving is highly likely to fail.", directory_name.string().c_str(), ec.value());
   }
 
   std::ofstream output(_disk_path.string(), std::ios_base::binary | std::ios_base::out);
   if (output.is_open())
   {
-    Log << "Saving file \"" << _disk_path << "\"." << std::endl;
+    LOG_DEBUG("Saving file '%s'.", _disk_path.string().c_str());
 
     output.write(buffer.data(), buffer.size());
     output.close();

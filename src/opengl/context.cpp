@@ -3,7 +3,7 @@
 #include <math/vector_2d.hpp>
 #include <math/vector_3d.hpp>
 #include <math/vector_4d.hpp>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <opengl/context.hpp>
 #include <opengl/scoped.hpp>
 
@@ -121,9 +121,9 @@ namespace opengl
         {
           errors += _extra_info();
 #ifndef NOGGIT_DO_NOT_THROW_ON_OPENGL_ERRORS
-          LogError << _function << ":" + errors << std::endl;
+          LOG_ERROR("%s: %s.", _function, errors);
 #else
-          throw std::runtime_error (_function + ":" + errors);
+          throw std::runtime_error (_function + ": " + errors);
 #endif
         }
 #endif
@@ -485,7 +485,7 @@ namespace opengl
     {
       std::vector<char> log (get_shader (shader, GL_INFO_LOG_LENGTH));
       _current_context->functions()->glGetShaderInfoLog (shader, log.size(), nullptr, log.data());
-      LogDebug << std::string (log.data ()) << std::endl;
+      LOG_DEBUG(log.data());
       throw std::runtime_error ("compiling shader failed: " + std::string (log.data()));
     }
   }
@@ -526,7 +526,7 @@ namespace opengl
     if (get_program (program, GL_LINK_STATUS) != GL_TRUE)
     {
       std::string error = get_program_info_log(program);
-      LogError << "linking program failed: " << error << std::endl;
+      LOG_ERROR("Linking program failed: %s.", error);
       throw std::runtime_error ("linking program failed: " + error);
     }
   }
@@ -554,7 +554,7 @@ namespace opengl
     if (get_program (program, GL_VALIDATE_STATUS) != GL_TRUE)
     {
       std::string error = get_program_info_log(program);
-      LogError << "validating program failed: " << error << std::endl;
+      LOG_ERROR("Validating program failed: %s.", error);
       throw std::runtime_error("validating program failed: " + error);
     }
   }

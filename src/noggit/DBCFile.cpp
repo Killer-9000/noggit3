@@ -1,7 +1,7 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
 #include <noggit/DBCFile.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MPQ.h>
 
 #include <string>
@@ -16,10 +16,10 @@ void DBCFile::open()
 
   if (f.isEof())
   {
-    LogError << "The DBC file \"" << filename << "\" could not be opened. This application may crash soon as the file is most likely needed." << std::endl;
+    LOG_ERROR("The DBC file '%s' could not be opened. This application may crash soon as the file is most likely needed.\n", filename.c_str());
     return;
   }
-  LogDebug << "Opening DBC \"" << filename << "\"" << std::endl;
+  LOG_DEBUG("Opening DBC '%s'\n", filename.c_str());
 
   char header[4];
 

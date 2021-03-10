@@ -3,7 +3,7 @@
 #include <math/projection.hpp>
 #include <noggit/Brush.h> // brush
 #include <noggit/DBC.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MapChunk.h>
 #include <noggit/MapView.h>
 #include <noggit/Misc.h>

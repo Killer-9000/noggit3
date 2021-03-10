@@ -2,7 +2,7 @@
 
 #include <noggit/AsyncLoader.h>
 #include <noggit/DBC.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MPQ.h>
 #include <noggit/MapView.h>
 #include <noggit/Model.h>
@@ -73,51 +73,53 @@ void Noggit::initPath(char *argv[])
   }
   catch (const boost::filesystem::filesystem_error& ex)
   {
-    LogError << ex.what() << std::endl;
+    LOG_ERROR("%s.", ex.what());
   }
 }
 
 void Noggit::loadMPQs()
 {
-  std::vector<std::string> archiveNames;
-  archiveNames.push_back("common.MPQ");
-  archiveNames.push_back("common-2.MPQ");
-  archiveNames.push_back("expansion.MPQ");
-  archiveNames.push_back("lichking.MPQ");
-  archiveNames.push_back("patch.MPQ");
-  archiveNames.push_back("patch-{number}.MPQ");
-  archiveNames.push_back("patch-{character}.MPQ");
+  std::array<std::string, 14> archiveNames =
+  {
+    "common.MPQ",
+    "common-2.MPQ",
+    "expansion.MPQ",
+    "lichking.MPQ",
+    "patch.MPQ",
+    "patch-{number}.MPQ",
+    "patch-{character}.MPQ",
 
-  //archiveNames.push_back( "{locale}/backup-{locale}.MPQ" );
-  //archiveNames.push_back( "{locale}/base-{locale}.MPQ" );
-  archiveNames.push_back("{locale}/locale-{locale}.MPQ");
-  //archiveNames.push_back( "{locale}/speech-{locale}.MPQ" );
-  archiveNames.push_back("{locale}/expansion-locale-{locale}.MPQ");
-  //archiveNames.push_back( "{locale}/expansion-speech-{locale}.MPQ" );
-  archiveNames.push_back("{locale}/lichking-locale-{locale}.MPQ");
-  //archiveNames.push_back( "{locale}/lichking-speech-{locale}.MPQ" );
-  archiveNames.push_back("{locale}/patch-{locale}.MPQ");
-  archiveNames.push_back("{locale}/patch-{locale}-{number}.MPQ");
-  archiveNames.push_back("{locale}/patch-{locale}-{character}.MPQ");
+    // "{locale}/backup-{locale}.MPQ" ,
+    // "{locale}/base-{locale}.MPQ" ,
+    "{locale}/locale-{locale}.MPQ",
+    // "{locale}/speech-{locale}.MPQ" ,
+    "{locale}/expansion-locale-{locale}.MPQ",
+    // "{locale}/expansion-speech-{locale}.MPQ" ,
+    "{locale}/lichking-locale-{locale}.MPQ",
+    // "{locale}/lichking-speech-{locale}.MPQ" ,
+    "{locale}/patch-{locale}.MPQ",
+    "{locale}/patch-{locale}-{number}.MPQ",
+    "{locale}/patch-{locale}-{character}.MPQ",
 
-  archiveNames.push_back("development.MPQ");
+    "development.MPQ"
+  };
 
-  const char * locales[] = { "enGB", "enUS", "deDE", "koKR", "frFR", "zhCN", "zhTW", "esES", "esMX", "ruRU" };
+  std::array<const char*, 10> locales = { "enGB", "enUS", "deDE", "koKR", "frFR", "zhCN", "zhTW", "esES", "esMX", "ruRU" };
   const char * locale("****");
 
   // Find locale, take first one.
-  for (int i(0); i < 10; ++i)
+  for (int i(0); i < locales.size(); ++i)
   {
     if (boost::filesystem::exists (wowpath / "Data" / locales[i] / "realmlist.wtf"))
     {
       locale = locales[i];
-      Log << "Locale: " << locale << std::endl;
+      LOG_INFO("Locale: %s.", locale);
       break;
     }
   }
   if (!strcmp(locale, "****"))
   {
-    LogError << "Could not find locale directory. Be sure, that there is one containing the file \"realmlist.wtf\"." << std::endl;
+    LOG_FATAL("Could not find locale directory. Be sure, that there is one containing the file \"realmlist.wtf\".");
     //return -1;
   }
 
@@ -171,8 +173,7 @@ namespace
   {
     if (!path.exists ())
     {
-      LogError << "Path \"" << qPrintable (path.absolutePath ())
-        << "\" does not exist." << std::endl;
+      LOG_ERROR("Path '%s' does not exist.", path.absolutePath().toStdString().c_str());
       return false;
     }
 
@@ -192,10 +193,8 @@ namespace
 
     if (found_locale == "****")
     {
-      LogError << "Path \"" << qPrintable (path.absolutePath ())
-        << "\" does not contain a locale directory "
-        << "(invalid installation or no installation at all)."
-        << std::endl;
+      LOG_ERROR("Path '%s' does not contain a locale directory "
+        "(invalid installation or no installation at all).", path.absolutePath().toStdString().c_str());
       return false;
     }
 
@@ -207,17 +206,16 @@ Noggit::Noggit(int argc, char *argv[])
   : fullscreen(false)
   , doAntiAliasing(true)
 {
-  InitLogging();
   assert (argc >= 1); (void) argc;
   initPath(argv);
 
   Log << "Noggit Studio - " << STRPRODUCTVER << std::endl;
 
+  LOG_INFO("Noggit Studio - %s.", STRPRODUCTVER);
 
   QSettings settings;
   doAntiAliasing = settings.value("antialiasing", false).toBool();
   fullscreen = settings.value("fullscreen", false).toBool();
-
 
   srand(::time(nullptr));
   QDir path (settings.value ("project/game_path").toString());
@@ -227,21 +225,17 @@ Noggit::Noggit(int argc, char *argv[])
     QDir new_path (QFileDialog::getExistingDirectory (nullptr, "Open WoW Directory", "/", QFileDialog::ShowDirsOnly));
     if (new_path.absolutePath () == "")
     {
-      LogError << "Could not auto-detect game path "
-        << "and user canceled the dialog." << std::endl;
+      LOG_INFO("Could not auto-detect game path and user canceled the dialog.");
       throw std::runtime_error ("no folder chosen");
     }
     std::swap (new_path, path);
   }
 
   wowpath = path.absolutePath().toStdString();
-
-  Log << "Game path: " << wowpath << std::endl;
-
   std::string project_path = settings.value ("project/path", path.absolutePath()).toString().toStdString();
-  settings.setValue ("project/path", QString::fromStdString (project_path));
 
-  Log << "Project path: " << project_path << std::endl;
+  LOG_INFO("Game path: '%s'.", wowpath.c_str());
+  LOG_INFO("Project path: '%s'.", project_path.c_str());
 
   settings.setValue ("project/game_path", path.absolutePath());
   settings.setValue ("project/path", QString::fromStdString(project_path));
@@ -260,8 +254,9 @@ Noggit::Noggit(int argc, char *argv[])
   format.setVersion(3, 3);
   format.setProfile(QSurfaceFormat::CoreProfile);
 
-  format.setSwapBehavior(QSurfaceFormat::DoubleBuffer);
-  format.setSwapInterval(settings.value ("vsync", 0).toInt());
+  int vsync = settings.value ("vsync", 0).toInt();
+  format.setSwapBehavior(vsync ? QSurfaceFormat::TripleBuffer : QSurfaceFormat::DoubleBuffer);
+  format.setSwapInterval(vsync);
 
   if (doAntiAliasing)
   {
@@ -278,9 +273,9 @@ Noggit::Noggit(int argc, char *argv[])
 
   opengl::context::scoped_setter const _ (::gl, &context);
 
-  LogDebug << "GL: Version: " << gl.getString (GL_VERSION) << std::endl;
-  LogDebug << "GL: Vendor: " << gl.getString (GL_VENDOR) << std::endl;
-  LogDebug << "GL: Renderer: " << gl.getString (GL_RENDERER) << std::endl;
+  LOG_DEBUG("GL: Version: %s.", gl.getString (GL_VERSION));
+  LOG_DEBUG("GL: Vendor: %s.", gl.getString (GL_VENDOR));
+  LOG_DEBUG("GL: Renderer: %s.", gl.getString (GL_RENDERER));
 
   main_window = std::make_unique<noggit::ui::main_window>();
   if (fullscreen)
@@ -310,7 +305,7 @@ namespace
                             );
     }
 
-    LogError << "std::terminate: " << reason << std::endl;
+    LOG_FATAL("std::terminate: %s.", reason.c_str());
   }
 
   struct application_with_exception_printer_on_notify : QApplication

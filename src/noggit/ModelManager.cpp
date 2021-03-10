@@ -1,7 +1,7 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
 #include <noggit/AsyncLoader.h>// AsyncLoader
-#include <noggit/Log.h> // LogDebug
+#include <util/Log.h> // LogDebug
 #include <noggit/Model.h> // Model
 #include <noggit/ModelManager.h> // ModelManager
 
@@ -31,13 +31,17 @@ decltype (ModelManager::_) ModelManager::_ {normalized_filename};
 
 void ModelManager::report()
 {
-  std::string output = "Still in the Model manager:\n";
+  bool models = false;
+  std::stringstream output;
+  output << "Still in the Model manager:\n";
   _.apply ( [&] (std::string const& key, Model const&)
             {
-              output += " - " + key + "\n";
+              output << " - " + key + "\n";
+              models = true;
             }
           );
-  LogDebug << output;
+  if (models)
+    LOG_ERROR(output.str());
 }
 
 void ModelManager::resetAnim()

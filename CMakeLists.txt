@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.3)
 cmake_policy (SET CMP0057 NEW) # "Support new IN_LIST if() operator."
-set (CMAKE_CXX_STANDARD 14)
+set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Project name
@@ -22,8 +22,8 @@ macro (add_compiler_flag_if_supported _VAR _FLAG)
   endif()
 endmacro()
 
+add_compiler_flag_if_supported (CMAKE_CXX_LINK_FLAGS -no-pie)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -fcolor-diagnostics)
-
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=reorder)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=conditional-uninitialized)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=unused)
@@ -147,10 +147,12 @@ endif()
 
 includePlattform("prefind")
 
+set (OpenGL_GL_PREFERENCE "LEGACY")
 FIND_PACKAGE( OpenGL REQUIRED )
-FIND_PACKAGE( Boost 1.60 COMPONENTS thread filesystem system unit_test_framework REQUIRED )
+FIND_PACKAGE( Boost 1.60 REQUIRED COMPONENTS thread filesystem system unit_test_framework )
 FIND_PACKAGE( StormLib REQUIRED )
-find_package (Qt5 COMPONENTS Widgets OpenGL OpenGLExtensions)
+find_package( fmt REQUIRED )
+find_package( Qt5 REQUIRED COMPONENTS Widgets OpenGL OpenGLExtensions )
 
 
 if (USE_SQL)
@@ -215,7 +217,6 @@ set ( noggit_root_sources
       src/noggit/cursor_render.cpp
       src/noggit/DBC.cpp
       src/noggit/DBCFile.cpp
-      src/noggit/Log.cpp
       src/noggit/MPQ.cpp
       src/noggit/MapChunk.cpp
       src/noggit/MapTile.cpp
@@ -294,6 +295,7 @@ set ( opengl_sources
 
 set ( util_sources
       src/util/exception_to_string.cpp
+      src/util/Log.cpp
     )
 
 set ( noggit_root_headers
@@ -306,7 +308,6 @@ set ( noggit_root_headers
       src/noggit/cursor_render.hpp
       src/noggit/DBC.h
       src/noggit/DBCFile.h
-      src/noggit/Log.h
       src/noggit/MPQ.h
       src/noggit/map_enums.hpp
       src/noggit/MapChunk.h
@@ -497,6 +498,7 @@ TARGET_LINK_LIBRARIES (noggit
   Qt5::Widgets
   Qt5::OpenGL
   Qt5::OpenGLExtensions
+  fmt::fmt
   ColorWidgets-qt5
 )
 

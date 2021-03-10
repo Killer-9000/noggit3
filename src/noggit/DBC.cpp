@@ -1,7 +1,7 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
 #include <noggit/DBC.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/Misc.h>
 
 #include <string>
@@ -115,7 +115,7 @@ const char * getGroundEffectDoodad(unsigned int effectID, int DoodadNum)
   }
   catch (DBCFile::NotFound)
   {
-    LogError << "Tried to get a not existing row in GroundEffectTextureDB or GroundEffectDoodadDB ( effectID = " << effectID << ", DoodadNum = " << DoodadNum << " )!" << std::endl;
+    LOG_ERROR("Tried to get a not existing row in GroundEffectTextureDB or GroundEffectDoodadDB ( effectID = %i, DoodadNum = %i )!", effectID, DoodadNum);
     return 0;
   }
 }

@@ -5,7 +5,7 @@
 #include <math/vector_3d.hpp>
 #include <noggit/Brush.h>
 #include <noggit/TileWater.hpp>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MapChunk.h>
 #include <noggit/MapHeaders.h>
 #include <noggit/Misc.h>
@@ -750,7 +750,7 @@ bool MapChunk::changeTerrain(math::vector_3d const& pos, float change, float rad
 
             break;
           default:
-            LogError << "Invalid terrain edit type (" << BrushType << ")" << std::endl;
+            LOG_DEBUG("Invalid terrain edit type (%i).", BrushType);
             changed = false;
             break;
         }

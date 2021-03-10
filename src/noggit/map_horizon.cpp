@@ -3,7 +3,7 @@
 #include "map_horizon.h"
 
 #include <noggit/MPQ.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/map_index.hpp>
 #include <noggit/World.h>
 #include <opengl/context.hpp>
@@ -91,13 +91,11 @@ namespace noggit
 
 map_horizon::map_horizon(const std::string& basename, const MapIndex * const index)
 {
-  std::stringstream filename;
-  filename << "World\\Maps\\" << basename << "\\" << basename << ".wdl";
-  _filename = filename.str();
-
+  _filename = fmt::sprintf("World\\Maps\\%s\\%s.wdl", basename, basename);
+  
   if (!MPQFile::exists(_filename))
   {
-    LogError << "file \"World\\Maps\\" << basename << "\\" << basename << ".wdl\" does not exist." << std::endl;
+    LOG_ERROR("File 'World\\Maps\\%s\\%s.wdl' does not exist.", basename.c_str(), basename.c_str());
     return;
   }
 
@@ -165,7 +163,7 @@ map_horizon::map_horizon(const std::string& basename, const MapIndex * const ind
         break;
       }
       default:
-        LogError << "unknown chunk in wdl: code=" << fourcc << std::endl;
+        LOG_ERROR("Unkown chunk in wdl, code '%s'.", fourcc);
         wdl_file.seekRelative(size);
         break;
     }

@@ -1,6 +1,6 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MapChunk.h>
 #include <noggit/MapTile.h>
 #include <noggit/Misc.h>
@@ -58,7 +58,7 @@ void MapTile::finishLoading()
 {
   MPQFile theFile(filename);
 
-  Log << "Opening tile " << index.x << ", " << index.z << " (\"" << filename << "\") from " << (theFile.isExternal() ? "disk" : "MPQ") << "." << std::endl;
+  LOG_DEBUG("Opening tile %i, %i ('%s') from %s.", index.x, index.z, filename.c_str(), theFile.isExternal() ? "disk" : "MPQ");
 
   // - Parsing the file itself. --------------------------
 
@@ -243,32 +243,34 @@ void MapTile::finishLoading()
   }
 
   // - MTFX ----------------------------------------------
-  /*
+  
   //! \todo Implement this or just use Terrain Cube maps?
-  Log << "MTFX offs: " << Header.mtfx << std::endl;
-  if(Header.mtfx != 0){
-  Log << "Try to load MTFX" << std::endl;
-  theFile.seek( Header.mtfx + 0x14 );
-
-  theFile.read( &fourcc, 4 );
-  theFile.read( &size, 4 );
-
-  assert( fourcc == 'MTFX' );
-
-
+  /*
+  LOG_DEBUG("MTFX offs: %i.", Header.mtfx);
+  if(Header.mtfx != 0)
   {
-  char* lCurPos = reinterpret_cast<char*>( theFile.getPointer() );
-  char* lEnd = lCurPos + size;
-  int tCount = 0;
-  while( lCurPos < lEnd ) {
-  int temp = 0;
-  theFile.read(&temp, 4);
-  Log << "Adding to " << mTextureFilenames[tCount].first << " texture effect: " << temp << std::endl;
-  mTextureFilenames[tCount++].second = temp;
-  lCurPos += 4;
-  }
-  }
+    LOG_DEBUG("Try to load MTFX.");
+    theFile.seek( Header.mtfx + 0x14 );
 
+    theFile.read( &fourcc, 4 );
+    theFile.read( &size, 4 );
+
+    assert( fourcc == 'MTFX' );
+
+
+    {
+      char* lCurPos = reinterpret_cast<char*>( theFile.getPointer() );
+      char* lEnd = lCurPos + size;
+      int tCount = 0;
+      while( lCurPos < lEnd ) 
+      {
+        int temp = 0;
+        theFile.read(&temp, 4);
+        LOG_DEBUG("Adding to: %s, texture effect: %i.", mTextureFilenames[tCount].first.c_str(), temp);
+        mTextureFilenames[tCount++].second = temp;
+        lCurPos += 4;
+      }
+    }
   }*/
 
   // - Done. ---------------------------------------------
@@ -308,7 +310,7 @@ void MapTile::finishLoading()
 
   // - Really done. --------------------------------------
 
-  LogDebug << "Done loading tile " << index.x << "," << index.z << "." << std::endl;
+  LOG_DEBUG("Done loading tile %i, %i.", index.x, index.z);
   finished = true;
   _tile_is_being_reloaded = false;
   _state_changed.notify_all();
@@ -521,7 +523,7 @@ bool MapTile::GetVertex(float x, float z, math::vector_3d *V)
 
 void MapTile::saveTile(World* world)
 {
-  Log << "Saving ADT \"" << filename << "\"." << std::endl;
+  LOG_DEBUG("Saving ADT: '%s'.", filename.c_str());
 
   int lID;  // This is a global counting variable. Do not store something in here you need later.
   std::vector<WMOInstance> lObjectInstances;
@@ -540,7 +542,7 @@ void MapTile::saveTile(World* world)
     if (!model)
     {
       // todo: save elsewhere if this happens ? it shouldn't but still
-      LogError << "Could not fine model with uid=" << uid << " when saving " << filename << std::endl;
+      LOG_DEBUG("Could not fine model with uid '%i' when saving '%s'.", uid, filename.c_str());
     }
     else
     {
@@ -663,7 +665,7 @@ void MapTile::saveTile(World* world)
 
     lCurrentPosition += texture.first.size() + 1;
     lADTFile.GetPointer<sChunkHeader>(lMTEX_Position)->mSize += texture.first.size() + 1;
-    LogDebug << "Added texture \"" << texture.first << "\"." << std::endl;
+    LOG_DEBUG("Added texture '%s'.", texture.first.c_str());
   }
 
   // MMDX
@@ -675,13 +677,13 @@ void MapTile::saveTile(World* world)
   lCurrentPosition += 8 + 0;
 
   // MMDX data
-  for (auto it = lModels.begin(); it != lModels.end(); ++it)
+  for (auto& model : lModels)
   {
-    it->second.filenamePosition = lADTFile.GetPointer<sChunkHeader>(lMMDX_Position)->mSize;
-    lADTFile.Insert(lCurrentPosition, it->first.size() + 1, misc::normalize_adt_filename(it->first).c_str());
-    lCurrentPosition += it->first.size() + 1;
-    lADTFile.GetPointer<sChunkHeader>(lMMDX_Position)->mSize += it->first.size() + 1;
-    LogDebug << "Added model \"" << it->first << "\"." << std::endl;
+    model.second.filenamePosition = lADTFile.GetPointer<sChunkHeader>(lMMDX_Position)->mSize;
+    lADTFile.Insert(lCurrentPosition, model.first.size() + 1, misc::normalize_adt_filename(model.first).c_str());
+    lCurrentPosition += model.first.size() + 1;
+    lADTFile.GetPointer<sChunkHeader>(lMMDX_Position)->mSize += model.first.size() + 1;
+    LOG_DEBUG("Added model '%s'.", model.first.c_str());
   }
 
   // MMID
@@ -718,7 +720,7 @@ void MapTile::saveTile(World* world)
     lADTFile.Insert(lCurrentPosition, object.first.size() + 1, misc::normalize_adt_filename(object.first).c_str());
     lCurrentPosition += object.first.size() + 1;
     lADTFile.GetPointer<sChunkHeader>(lMWMO_Position)->mSize += object.first.size() + 1;
-    LogDebug << "Added object \"" << object.first << "\"." << std::endl;
+    LOG_DEBUG("Added object '%s'.", object.first.c_str());
   }
 
   // MWID
@@ -759,7 +761,7 @@ void MapTile::saveTile(World* world)
     auto filename_to_offset_and_name = lModels.find(model.model->filename);
     if (filename_to_offset_and_name == lModels.end())
     {
-      LogError << "There is a problem with saving the doodads. We have a doodad that somehow changed the name during the saving function. However this got produced, you can get a reward from schlumpf by pasting him this line." << std::endl;
+      LOG_DEBUG("There is a problem with saving the doodads. We have a doodad that somehow changed the name during the saving function. However this got produced, you can get a reward from schlumpf by pasting him this line.");
       return;
     }
 
@@ -777,8 +779,7 @@ void MapTile::saveTile(World* world)
   }
 
   lCurrentPosition += 8 + lMDDF_Size;
-
-  LogDebug << "Added " << lID << " doodads to MDDF" << std::endl;
+  LOG_DEBUG("Added %i doodads to MDDF.", lID);
 
   // MODF
   int lMODF_Size = 0x40 * lObjectInstances.size();
@@ -795,7 +796,7 @@ void MapTile::saveTile(World* world)
     auto filename_to_offset_and_name = lObjects.find(object.wmo->filename);
     if (filename_to_offset_and_name == lObjects.end())
     {
-      LogError << "There is a problem with saving the objects. We have an object that somehow changed the name during the saving function. However this got produced, you can get a reward from schlumpf by pasting him this line." << std::endl;
+      LOG_DEBUG("There is a problem with saving the objects. We have an object that somehow changed the name during the saving function. However this got produced, you can get a reward from schlumpf by pasting him this line.");
       return;
     }
 
@@ -822,8 +823,8 @@ void MapTile::saveTile(World* world)
     lMODF_Data[lID].unknown = object.mUnknown;
     lID++;
   }
-
-  LogDebug << "Added " << lID << " wmos to MODF" << std::endl;
+  
+  LOG_DEBUG("Added %i wmos to MODF.", lID);
 
   lCurrentPosition += 8 + lMODF_Size;
 

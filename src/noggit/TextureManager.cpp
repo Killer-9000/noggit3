@@ -2,7 +2,7 @@
 
 #include <math/vector_2d.hpp>
 #include <noggit/TextureManager.h>
-#include <noggit/Log.h> // LogDebug
+#include <util/Log.h> // LogDebug
 #include <opengl/context.hpp>
 #include <opengl/scoped.hpp>
 #include <opengl/shader.hpp>
@@ -19,13 +19,17 @@ decltype (TextureManager::_) TextureManager::_;
 
 void TextureManager::report()
 {
-  std::string output = "Still in the Texture manager:\n";
+  bool models = false;
+  std::stringstream output;
+  output << "Still in the Texture manager:\n";
   _.apply ( [&] (std::string const& key, blp_texture const&)
             {
-              output += " - " + key + "\n";
+              output << " - " + key + "\n";
+              models = true;
             }
           );
-  LogDebug << output;
+  if (models)
+    LOG_ERROR(output.str());
 }
 
 #include <cstdint>
@@ -199,7 +203,7 @@ void blp_texture::loadFromCompressedData(BLPHeader const* lHeader, char const* l
 
     if (size < lHeader->sizes[i])
     {
-      LogDebug << "mipmap size mismatch in '" << filename << "'" << std::endl;
+      LOG_DEBUG("mipmap size mismatch in '%s'.", filename.c_str());
       return;
     }
 
@@ -223,7 +227,7 @@ void blp_texture::finishLoading()
   bool exists = MPQFile::exists(filename);
   if (!exists)
   {
-    LogError << "file not found: '" << filename << "'" << std::endl;
+    LOG_DEBUG("file not found: '%s'.", filename.c_str());
   }
 
   MPQFile f(exists ? filename : "textures/shanecube.blp");

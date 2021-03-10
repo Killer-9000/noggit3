@@ -6,7 +6,7 @@
 #include <noggit/Brush.h> // brush
 #include <noggit/ChunkWater.hpp>
 #include <noggit/DBC.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/MapChunk.h>
 #include <noggit/MapTile.h>
 #include <noggit/Misc.h>
@@ -51,20 +51,19 @@ bool World::IsEditableWorld(int pMapId)
   }
   catch (int)
   {
-    LogError << "Did not find map with id " << pMapId << ". This is NOT editable.." << std::endl;
+    LOG_ERROR("Did not find map with id %i. This is NOT editable.", pMapId);
     return false;
   }
 
-  std::stringstream ssfilename;
-  ssfilename << "World\\Maps\\" << lMapName << "\\" << lMapName << ".wdt";
+  std::string filename = fmt::sprintf("World\\Maps\\%s\\%s.wdt", lMapName, lMapName);
 
-  if (!MPQFile::exists(ssfilename.str()))
+  if (!MPQFile::exists(filename))
   {
-    Log << "World " << pMapId << ": " << lMapName << " has no WDT file!" << std::endl;
+    LOG_WARN("World %i: %s has no WDT file.", pMapId, lMapName);
     return false;
   }
 
-  MPQFile mf(ssfilename.str());
+  MPQFile mf(filename);
 
   //sometimes, wdts don't open, so ignore them...
   if (mf.isEof())
@@ -108,7 +107,7 @@ World::World(const std::string& name, int map_id)
   , _settings (new QSettings())
   , _view_distance(_settings->value ("view_distance", 1000.f).toFloat())
 {
-  LogDebug << "Loading world \"" << name << "\"." << std::endl;
+  LOG_DEBUG("Loading world '%s'", name.c_str());
 }
 
 void World::update_selection_pivot()
@@ -323,7 +322,7 @@ void World::snap_selected_models_to_the_ground()
     // this should never happen
     if (hits.empty())
     {
-      LogError << "Snap to ground ray intersection failed" << std::endl;
+      LOG_ERROR("Snap to ground ray intersection failed.");
       continue;
     }
 

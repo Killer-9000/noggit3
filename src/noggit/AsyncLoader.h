@@ -16,7 +16,7 @@ class AsyncLoader
 public:
   static AsyncLoader& instance()
   {
-    static AsyncLoader async_loader(2);
+    static AsyncLoader async_loader(8);
     return async_loader;
   }
 

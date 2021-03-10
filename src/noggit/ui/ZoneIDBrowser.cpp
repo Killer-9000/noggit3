@@ -3,7 +3,7 @@
 #include <noggit/ui/ZoneIDBrowser.h>
 
 #include <noggit/DBC.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/Misc.h>
 
 #include <QtWidgets/QVBoxLayout>
@@ -45,9 +45,8 @@ namespace noggit
       {
         if (i->getInt(MapDB::MapID) == id)
         {
-          std::stringstream ss;
-          ss << id << "-" << i->getString(MapDB::InternalName);
-          _area_tree->setHeaderLabel(ss.str().c_str());
+          std::string ss = fmt::sprintf("%i-%s", id, i->getString(MapDB::InternalName));
+          _area_tree->setHeaderLabel(ss.c_str());
         }
       }
 
@@ -101,10 +100,9 @@ namespace noggit
       {
         QTreeWidgetItem* item = new QTreeWidgetItem();
 
-        std::stringstream ss;
-        ss << area_id << "-" << gAreaDB.getAreaName(area_id);
+        std::string ss = fmt::sprintf("%i-%s", area_id, gAreaDB.getAreaName(area_id));
         item->setData(0, 1, QVariant(area_id));
-        item->setText(0, QString(ss.str().c_str()));
+        item->setText(0, QString(ss.c_str()));
         _items.emplace(area_id, item);
 
         return item;

@@ -1,7 +1,7 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
 #include <noggit/DBC.h>
-#include <noggit/Log.h>
+#include <util/Log.h>
 #include <noggit/Model.h> // Model
 #include <noggit/ModelManager.h> // ModelManager
 #include <noggit/Sky.h>
@@ -60,7 +60,7 @@ Sky::Sky(DBCFile::Iterator data)
     }
     catch (...)
     {
-      LogError << "When trying to intialize sky " << data->getInt(LightDB::ID) << ", there was an error with getting an entry in a DBC (" << i << "). Sorry." << std::endl;
+      LOG_ERROR("When trying to intialize sky %i, there was an error with getting an entry in a DBC (%i). Sorry.", data->getInt(LightDB::ID), i);
       DBCFile::Record rec = gLightIntBandDB.getByID(i);
       int entries = rec.getInt(LightIntBandDB::Entries);
 
@@ -97,7 +97,7 @@ Sky::Sky(DBCFile::Iterator data)
   }
   catch (...)
   {
-    LogError << "When trying to get the skybox for the entry " << light_param_0 << " in LightParams.dbc. Sad." << std::endl;
+    LOG_ERROR("There was an error trying to get LightParams.dbc data for skybox '%i'.", light_param_0);
   }
 }
 
@@ -252,7 +252,7 @@ void Skies::update_sky_colors(math::vector_3d pos, int time)
       {
         if ((sky.colorFor(i, time).x>1.0f) || (sky.colorFor(i, time).y>1.0f) || (sky.colorFor(i, time).z>1.0f))
         {
-          LogDebug << "Sky " << j << " " << i << " is out of bounds!" << std::endl;
+          LOG_ERROR("Sky '%i %i' is out of bounds!", j, i);
           continue;
         }
         color_set[i] += sky.colorFor(i, time) * sky.weight;
