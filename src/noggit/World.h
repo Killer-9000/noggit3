@@ -184,7 +184,10 @@ public:
   }
   void set_selected_models_pos(math::vector_3d const& pos, bool change_height = true);
   void rotate_selected_models(math::degrees rx, math::degrees ry, math::degrees rz, bool use_pivot);
+  void rotate_selected_models_randomly(float minX, float maxX, float minY, float maxY, float minZ, float maxZ);
   void set_selected_models_rotation(math::degrees rx, math::degrees ry, math::degrees rz);
+  // Checks the normal of the terrain on model origin and rotates to that spot.
+  void rotate_selected_models_to_ground_normal(bool smoothNormals);
 
   bool GetVertex(float x, float z, math::vector_3d *V) const;
 
@@ -236,12 +239,12 @@ public:
 
   void addM2 ( std::string const& filename
              , math::vector_3d newPos
-             , float scale, math::vector_3d rotation
+             , float scale, math::degrees::vec3 rotation
              , noggit::object_paste_params*
              );
   void addWMO ( std::string const& filename
               , math::vector_3d newPos
-              , math::vector_3d rotation
+              , math::degrees::vec3 rotation
               );
 
   // add a m2 instance to the world (needs to be positioned already), return the uid
