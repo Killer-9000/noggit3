@@ -203,6 +203,13 @@ IF(NOT NOGGIT_OPENGL_ERROR_CHECK )
   ADD_DEFINITIONS( -DNOGGIT_DO_NOT_CHECK_FOR_OPENGL_ERRORS )
 ENDIF()
 
+# Networking option
+OPTION( ENABLE_NETWORKING "Enable the ability to use networking, with noggit server" OFF )
+IF( ENABLE_NETWORKING )
+  MESSAGE( STATUS "Enabled ability to connect to noggit server" )
+  ADD_DEFINITIONS( -DUSE_NETWORKING )
+ENDIF()
+
 includePlattform("postfind")
 
 include_directories ("${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/tmp")
@@ -422,6 +429,15 @@ set ( shaders
       src/glsl/horizon_frag.glsl
     )
 
+if (ENABLE_NETWORKING)
+  set ( network
+        src/network/session.cpp
+        src/network/session.h
+        src/network/packet.cpp
+        src/network/packet.h
+      )
+endif()
+
 IF(WIN32)
   set ( os_sources
         include/win/StackWalker.cpp
@@ -461,6 +477,9 @@ source_group("external"  FILES ${external_sources} ${external_headers})
 source_group("os"  FILES ${os_sources} ${os_headers})
 source_group("util"  FILES ${util_sources})
 source_group("glsl"  FILES ${shaders})
+if (ENABLE_NETWORKING)
+source_group("network"  FILES ${network})
+endif()
 
 qt5_add_resources (compiled_resource_files "resources/resources.qrc")
 
@@ -487,6 +506,7 @@ ADD_EXECUTABLE ( noggit
                   ${compiled_resource_files}
                   ${shaders}
                   ${force_update_file}
+                  ${network}
                 )
                 
 TARGET_LINK_LIBRARIES (noggit
@@ -554,28 +574,28 @@ if (NOGGIT_LOGTOCONSOLE AND WIN32)
   set_property (TARGET noggit APPEND PROPERTY COMPILE_DEFINITIONS $<$<CONFIG:Debug>:"_CONSOLE">)
 endif()
 
-includePlattform("pack")
+# includePlattform("pack")
 
-add_library (noggit-math STATIC
-  "src/math/matrix_4x4.cpp"
-  "src/math/vector_2d.cpp"
-)
-add_library (noggit::math ALIAS noggit-math)
+# add_library (noggit-math STATIC
+#   "src/math/matrix_4x4.cpp"
+#   "src/math/vector_2d.cpp"
+# )
+# add_library (noggit::math ALIAS noggit-math)
 
-include (CTest)
-enable_testing()
+# include (CTest)
+# enable_testing()
 
-add_executable (math-vector_2d.test test/math/vector_2d.cpp)
-target_compile_definitions (math-vector_2d.test PRIVATE "-DBOOST_TEST_MODULE=\"math\"")
-target_link_libraries (math-vector_2d.test Boost::unit_test_framework noggit::math)
-add_test (NAME math-vector_2d COMMAND $<TARGET_FILE:math-vector_2d.test>)
+# add_executable (math-vector_2d.test test/math/vector_2d.cpp)
+# target_compile_definitions (math-vector_2d.test PRIVATE "-DBOOST_TEST_MODULE=\"math\"")
+# target_link_libraries (math-vector_2d.test Boost::unit_test_framework noggit::math)
+# add_test (NAME math-vector_2d COMMAND $<TARGET_FILE:math-vector_2d.test>)
 
-add_executable (math-trig.test test/math/trig.cpp)
-target_compile_definitions (math-trig.test PRIVATE "-DBOOST_TEST_MODULE=\"math\"")
-target_link_libraries (math-trig.test Boost::unit_test_framework noggit::math)
-add_test (NAME math-trig COMMAND $<TARGET_FILE:math-trig.test>)
+# add_executable (math-trig.test test/math/trig.cpp)
+# target_compile_definitions (math-trig.test PRIVATE "-DBOOST_TEST_MODULE=\"math\"")
+# target_link_libraries (math-trig.test Boost::unit_test_framework noggit::math)
+# add_test (NAME math-trig COMMAND $<TARGET_FILE:math-trig.test>)
 
-add_executable (math-matrix_4x4.test test/math/matrix_4x4.cpp)
-target_compile_definitions (math-matrix_4x4.test PRIVATE "-DBOOST_TEST_MODULE=\"math\"")
-target_link_libraries (math-matrix_4x4.test Boost::unit_test_framework noggit::math)
-add_test (NAME math-matrix_4x4 COMMAND $<TARGET_FILE:math-matrix_4x4.test>)
+# add_executable (math-matrix_4x4.test test/math/matrix_4x4.cpp)
+# target_compile_definitions (math-matrix_4x4.test PRIVATE "-DBOOST_TEST_MODULE=\"math\"")
+# target_link_libraries (math-matrix_4x4.test Boost::unit_test_framework noggit::math)
+# add_test (NAME math-matrix_4x4 COMMAND $<TARGET_FILE:math-matrix_4x4.test>)

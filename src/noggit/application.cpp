@@ -37,6 +37,9 @@
 #include <QtWidgets/QMessageBox>
 
 #include "revision.h"
+#if USE_NETWORKING
+#include "network/session.h"
+#endif
 
 class Noggit
 {
@@ -209,9 +212,11 @@ Noggit::Noggit(int argc, char *argv[])
   assert (argc >= 1); (void) argc;
   initPath(argv);
 
-  Log << "Noggit Studio - " << STRPRODUCTVER << std::endl;
-
   LOG_INFO("Noggit Studio - %s.", STRPRODUCTVER);
+
+#if USE_NETWORKING
+  sSession.StartSocket();
+#endif
 
   QSettings settings;
   doAntiAliasing = settings.value("antialiasing", false).toBool();
@@ -325,6 +330,9 @@ namespace
     }
   };
 }
+#if USE_NETWORKING
+static std::thread sessionThread;
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -336,6 +344,10 @@ int main(int argc, char *argv[])
   qapp.setOrganizationName ("Noggit");
 
   Noggit app (argc, argv);
+
+#if USE_NETWORKING
+  sessionThread = std::thread([&](){ sSession.Update(); });
+#endif
 
   return qapp.exec();
 }
