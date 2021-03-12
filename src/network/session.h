@@ -1,5 +1,5 @@
-#if USE_NETWORKING
 #pragma once
+#if USE_NETWORKING
 
 #include "packet.h"
 #include <boost/asio.hpp>

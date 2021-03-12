@@ -1,7 +1,8 @@
+#define USE_NETWORKING 1
 #if USE_NETWORKING
 
 #include "session.h"
-#include "util/Log.h"
+#include "util/log.h"
 #include <string_view>
 
 void CSession::StartSocket()
@@ -21,6 +22,7 @@ void CSession::StartSocket()
 
     m_address = m_socket->remote_endpoint().address().to_string();
     m_port = m_socket->remote_endpoint().port();
+    //m_socket->non_blocking(true);
 
     LOG_INFO("Started connection: %s:%i", GetAddress(), GetPort());
     m_closed = false;
@@ -43,11 +45,12 @@ void CSession::Update()
 
     if (m_readAmount > 0)
     {
-        LOG_DEBUG("Got packet with opcode: (%i)", m_buffer.Opcode());
+        LOG_DEBUG("Got packet with opcode: (%i)", m_buffer.PacketOpcode());
         m_buffer.HandleData(this, m_readAmount);
     }
 
-    Update();
+    if (!IsClosed())
+        Update();
 }
 
 void CSession::CloseSocket()

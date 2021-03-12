@@ -346,7 +346,11 @@ int main(int argc, char *argv[])
   Noggit app (argc, argv);
 
 #if USE_NETWORKING
-  sessionThread = std::thread([&](){ sSession.Update(); });
+  sessionThread = std::thread([&]()
+  { 
+    if (!sSession.IsClosed())
+      sSession.Update(); 
+  });
 #endif
 
   return qapp.exec();
