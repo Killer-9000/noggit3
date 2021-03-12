@@ -1,8 +1,8 @@
 ﻿// This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/cursor_render.hpp>
+#include "noggit/cursor_render.hpp"
 
-#include <opengl/shader.hpp>
+#include "opengl/shader.hpp"
 
 namespace noggit
 {

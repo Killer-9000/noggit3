@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <noggit/bool_toggle_property.hpp>
+#include "noggit/bool_toggle_property.hpp"
 
 #include <QtWidgets/QCheckBox>
 

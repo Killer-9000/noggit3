@@ -1,6 +1,6 @@
 #include <boost/test/included/unit_test.hpp>
 
-#include <math/trig.hpp>
+#include "math/trig.hpp"
 
 namespace math
 {

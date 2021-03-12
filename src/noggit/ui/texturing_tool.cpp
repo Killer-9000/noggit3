@@ -1,14 +1,14 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/texturing_tool.hpp>
+#include "noggit/ui/texturing_tool.hpp"
 
-#include <noggit/Misc.h>
-#include <noggit/World.h>
-#include <noggit/tool_enums.hpp>
-#include <noggit/ui/checkbox.hpp>
-#include <noggit/ui/CurrentTexture.h>
-#include <noggit/ui/texture_swapper.hpp>
-#include <util/qt/overload.hpp>
+#include "noggit/Misc.h"
+#include "noggit/World.h"
+#include "noggit/tool_enums.hpp"
+#include "noggit/ui/checkbox.hpp"
+#include "noggit/ui/CurrentTexture.h"
+#include "noggit/ui/texture_swapper.hpp"
+#include "util/qt/overload.hpp"
 
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QPushButton>

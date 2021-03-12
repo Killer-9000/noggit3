@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <math/quaternion.hpp>
-#include <noggit/MPQ.h>
-#include <noggit/ModelHeaders.h>
+#include "math/quaternion.hpp"
+#include "noggit/MPQ.h"
+#include "noggit/ModelHeaders.h"
 
 #include <cassert>
 #include <map>

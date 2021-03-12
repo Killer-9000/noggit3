@@ -1,10 +1,10 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/ZoneIDBrowser.h>
+#include "noggit/ui/ZoneIDBrowser.h"
 
-#include <noggit/DBC.h>
-#include <util/Log.h>
-#include <noggit/Misc.h>
+#include "noggit/DBC.h"
+#include "util/log.h"
+#include "noggit/Misc.h"
 
 #include <QtWidgets/QVBoxLayout>
 

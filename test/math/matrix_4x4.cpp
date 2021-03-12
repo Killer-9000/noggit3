@@ -1,6 +1,6 @@
 #include <boost/test/included/unit_test.hpp>
 
-#include <math/matrix_4x4.hpp>
+#include "math/matrix_4x4.hpp"
 
 namespace math
 {

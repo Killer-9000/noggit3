@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <noggit/ui/widget.hpp>
+#include "noggit/ui/widget.hpp"
 #include <QtWidgets/QListWidget>
 #include <unordered_set>
 #include <string>

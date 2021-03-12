@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include <math/matrix_4x4.hpp>
-#include <math/vector_3d.hpp>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.fwd.hpp>
+#include "math/matrix_4x4.hpp"
+#include "math/vector_3d.hpp"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.fwd.hpp"
 
 #include <memory>
 

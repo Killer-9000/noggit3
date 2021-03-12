@@ -1,10 +1,10 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/terrain_tool.hpp>
+#include "noggit/ui/terrain_tool.hpp"
 
-#include <noggit/tool_enums.hpp>
-#include <noggit/World.h>
-#include <util/qt/overload.hpp>
+#include "noggit/tool_enums.hpp"
+#include "noggit/World.h"
+#include "util/qt/overload.hpp"
 
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>

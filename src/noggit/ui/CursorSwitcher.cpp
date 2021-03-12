@@ -1,8 +1,8 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/CursorSwitcher.h>
-#include <noggit/tool_enums.hpp>
-#include <util/qt/overload.hpp>
+#include "noggit/ui/CursorSwitcher.h"
+#include "noggit/tool_enums.hpp"
+#include "util/qt/overload.hpp"
 
 #include <qt-color-widgets/color_selector.hpp>
 

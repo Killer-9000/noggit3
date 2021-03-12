@@ -2,20 +2,20 @@
 
 #pragma once
 
-#include <math/frustum.hpp>
-#include <math/matrix_4x4.hpp>
-#include <math/quaternion.hpp>
-#include <math/ray.hpp>
-#include <math/vector_3d.hpp>
-#include <noggit/Animated.h> // Animation::M2Value
-#include <noggit/AsyncObject.h> // AsyncObject
-#include <noggit/MPQ.h>
-#include <noggit/ModelHeaders.h>
-#include <noggit/Particle.h>
-#include <noggit/TextureManager.h>
-#include <noggit/tool_enums.hpp>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.fwd.hpp>
+#include "math/frustum.hpp"
+#include "math/matrix_4x4.hpp"
+#include "math/quaternion.hpp"
+#include "math/ray.hpp"
+#include "math/vector_3d.hpp"
+#include "noggit/Animated.h" // Animation::M2Value
+#include "noggit/AsyncObject.h" // AsyncObject
+#include "noggit/MPQ.h"
+#include "noggit/ModelHeaders.h"
+#include "noggit/Particle.h"
+#include "noggit/TextureManager.h"
+#include "noggit/tool_enums.hpp"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.fwd.hpp"
 
 #include <string>
 #include <vector>

@@ -2,13 +2,14 @@
 
 #pragma once
 
-#include <math/vector_3d.hpp>
-#include <noggit/Selection.h>
-#include <noggit/bool_toggle_property.hpp>
+#include "math/vector_3d.hpp"
+#include "noggit/Selection.h"
+#include "noggit/bool_toggle_property.hpp"
 
 #include <QLabel>
 #include <QWidget>
 #include <QSettings>
+#include <QScrollArea>
 
 #include <boost/optional.hpp>
 

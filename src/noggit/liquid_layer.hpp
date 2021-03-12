@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include <math/trig.hpp>
-#include <noggit/MapHeaders.h>
-#include <noggit/liquid_render.hpp>
-#include <opengl/scoped.hpp>
+#include "math/trig.hpp"
+#include "noggit/MapHeaders.h"
+#include "noggit/liquid_render.hpp"
+#include "opengl/scoped.hpp"
 
 class MapChunk;
 class sExtendableArray;

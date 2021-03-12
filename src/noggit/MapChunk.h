@@ -2,18 +2,18 @@
 
 #pragma once
 
-#include <math/quaternion.hpp> // math::vector_4d
-#include <noggit/map_enums.hpp>
-#include <noggit/MapTile.h> // MapTile
-#include <noggit/ModelInstance.h>
-#include <noggit/Selection.h>
-#include <noggit/TextureManager.h>
-#include <noggit/WMOInstance.h>
-#include <noggit/texture_set.hpp>
-#include <noggit/tool_enums.hpp>
-#include <opengl/scoped.hpp>
-#include <opengl/texture.hpp>
-#include <noggit/Misc.h>
+#include "math/quaternion.hpp" // math::vector_4d
+#include "noggit/map_enums.hpp"
+#include "noggit/MapTile.h" // MapTile
+#include "noggit/ModelInstance.h"
+#include "noggit/Selection.h"
+#include "noggit/TextureManager.h"
+#include "noggit/WMOInstance.h"
+#include "noggit/texture_set.hpp"
+#include "noggit/tool_enums.hpp"
+#include "opengl/scoped.hpp"
+#include "opengl/texture.hpp"
+#include "noggit/Misc.h"
 
 #include <map>
 #include <memory>

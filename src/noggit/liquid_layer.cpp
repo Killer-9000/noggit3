@@ -1,10 +1,10 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/DBC.h>
-#include <noggit/liquid_layer.hpp>
-#include <util/Log.h>
-#include <noggit/MapChunk.h>
-#include <noggit/Misc.h>
+#include "noggit/DBC.h"
+#include "noggit/liquid_layer.hpp"
+#include "util/log.h"
+#include "noggit/MapChunk.h"
+#include "noggit/Misc.h"
 
 #include <boost/filesystem.hpp>
 #include <boost/format.hpp>

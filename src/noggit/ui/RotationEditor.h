@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <noggit/Selection.h>
+#include "noggit/Selection.h"
 
 #include <boost/optional.hpp>
 

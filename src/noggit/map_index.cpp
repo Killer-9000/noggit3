@@ -1,17 +1,17 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/AsyncLoader.h>
-#include <noggit/MPQ.h>
-#include <noggit/MapChunk.h>
-#include <noggit/MapChunk.h>
-#include <noggit/MapTile.h>
-#include <noggit/Misc.h>
-#include <noggit/World.h>
+#include "noggit/AsyncLoader.h"
+#include "noggit/MPQ.h"
+#include "noggit/MapChunk.h"
+#include "noggit/MapChunk.h"
+#include "noggit/MapTile.h"
+#include "noggit/Misc.h"
+#include "noggit/World.h"
 #ifdef USE_MYSQL_UID_STORAGE
-  #include <mysql/mysql.h>
+  #include "mysql/mysql.h"
 #endif
-#include <noggit/map_index.hpp>
-#include <noggit/uid_storage.hpp>
+#include "noggit/map_index.hpp"
+#include "noggit/uid_storage.hpp"
 
 #include <QtCore/QSettings>
 

@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include <noggit/unsigned_int_property.hpp>
-#include <noggit/ui/widget.hpp>
+#include "noggit/unsigned_int_property.hpp"
+#include "noggit/ui/widget.hpp"
 
-#include <math/vector_4d.hpp>
+#include "math/vector_4d.hpp"
 
 namespace noggit
 {

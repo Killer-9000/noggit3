@@ -1,8 +1,8 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/TextureList.hpp>
+#include "noggit/ui/TextureList.hpp"
 
-#include <noggit/Misc.h>
+#include "noggit/Misc.h"
 
 #include <QtWidgets/QListView>
 #include <QtGui/QMouseEvent>

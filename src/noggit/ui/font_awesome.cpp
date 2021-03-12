@@ -6,8 +6,8 @@
 #include <QtGui/QPainter>
 #include <QtWidgets/QMessageBox>
 
-#include <noggit/ui/font_awesome.hpp>
-#include <util/Log.h>
+#include "noggit/ui/font_awesome.hpp"
+#include "util/log.h"
 
 namespace noggit
 {

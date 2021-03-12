@@ -1,12 +1,12 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/DBC.h>
-#include <noggit/liquid_layer.hpp>
-#include <util/Log.h>
-#include <noggit/TextureManager.h> // TextureManager, Texture
-#include <noggit/World.h>
-#include <opengl/context.hpp>
-#include <opengl/scoped.hpp>
+#include "noggit/DBC.h"
+#include "noggit/liquid_layer.hpp"
+#include "util/log.h"
+#include "noggit/TextureManager.h" // TextureManager, Texture
+#include "noggit/World.h"
+#include "opengl/context.hpp"
+#include "opengl/scoped.hpp"
 
 #include <boost/filesystem.hpp>
 #include <boost/format.hpp>

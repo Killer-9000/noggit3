@@ -2,11 +2,11 @@
 
 #pragma once
 
-#include <noggit/map_enums.hpp>
-#include <noggit/MapHeaders.h>
-#include <noggit/MapTile.h>
-#include <noggit/Misc.h>
-#include <noggit/tile_index.hpp>
+#include "noggit/map_enums.hpp"
+#include "noggit/MapHeaders.h"
+#include "noggit/MapTile.h"
+#include "noggit/Misc.h"
+#include "noggit/tile_index.hpp"
 
 #include <boost/range/iterator_range.hpp>
 

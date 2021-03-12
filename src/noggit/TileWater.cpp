@@ -1,10 +1,10 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ChunkWater.hpp>
-#include <util/Log.h>
-#include <noggit/MapTile.h>
-#include <noggit/Misc.h>
-#include <noggit/TileWater.hpp>
+#include "noggit/ChunkWater.hpp"
+#include "util/log.h"
+#include "noggit/MapTile.h"
+#include "noggit/Misc.h"
+#include "noggit/TileWater.hpp"
 
 TileWater::TileWater(MapTile *pTile, float pXbase, float pZbase, bool use_mclq_green_lava)
   : tile(pTile)

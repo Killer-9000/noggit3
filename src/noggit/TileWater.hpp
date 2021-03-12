@@ -2,11 +2,11 @@
 
 #pragma once
 
-#include <math/vector_3d.hpp>
-#include <noggit/ChunkWater.hpp>
-#include <noggit/MPQ.h>
-#include <noggit/MapHeaders.h>
-#include <noggit/tool_enums.hpp>
+#include "math/vector_3d.hpp"
+#include "noggit/ChunkWater.hpp"
+#include "noggit/MPQ.h"
+#include "noggit/MapHeaders.h"
+#include "noggit/tool_enums.hpp"
 
 #include <memory>
 

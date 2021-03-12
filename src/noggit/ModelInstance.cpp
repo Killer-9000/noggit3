@@ -1,15 +1,15 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/bounding_box.hpp>
-#include <math/frustum.hpp>
-#include <util/Log.h>
-#include <noggit/Misc.h> // checkinside
-#include <noggit/Model.h> // Model, etc.
-#include <noggit/ModelInstance.h>
-#include <noggit/WMOInstance.h>
-#include <opengl/primitives.hpp>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.hpp>
+#include "math/bounding_box.hpp"
+#include "math/frustum.hpp"
+#include "util/log.h"
+#include "noggit/Misc.h" // checkinside
+#include "noggit/Model.h" // Model, etc.
+#include "noggit/ModelInstance.h"
+#include "noggit/WMOInstance.h"
+#include "opengl/primitives.hpp"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.hpp"
 
 ModelInstance::ModelInstance(std::string const& filename)
   : model (filename)

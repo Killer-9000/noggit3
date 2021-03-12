@@ -1,7 +1,7 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/Help.h>
-#include <noggit/ui/font_noggit.hpp>
+#include "noggit/ui/Help.h"
+#include "noggit/ui/font_noggit.hpp"
 
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>

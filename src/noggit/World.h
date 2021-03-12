@@ -2,22 +2,22 @@
 
 #pragma once
 
-#include <math/frustum.hpp>
-#include <math/trig.hpp>
-#include <noggit/cursor_render.hpp>
-#include <noggit/Misc.h>
-#include <noggit/Model.h> // ModelManager
-#include <noggit/Selection.h>
-#include <noggit/Sky.h> // Skies, OutdoorLighting, OutdoorLightStats
-#include <noggit/WMO.h> // WMOManager
-#include <noggit/map_horizon.h>
-#include <noggit/map_index.hpp>
-#include <noggit/tile_index.hpp>
-#include <noggit/tool_enums.hpp>
-#include <noggit/world_tile_update_queue.hpp>
-#include <noggit/world_model_instances_storage.hpp>
-#include <opengl/primitives.hpp>
-#include <opengl/shader.fwd.hpp>
+#include "math/frustum.hpp"
+#include "math/trig.hpp"
+#include "noggit/cursor_render.hpp"
+#include "noggit/Misc.h"
+#include "noggit/Model.h" // ModelManager
+#include "noggit/Selection.h"
+#include "noggit/Sky.h" // Skies, OutdoorLighting, OutdoorLightStats
+#include "noggit/WMO.h" // WMOManager
+#include "noggit/map_horizon.h"
+#include "noggit/map_index.hpp"
+#include "noggit/tile_index.hpp"
+#include "noggit/tool_enums.hpp"
+#include "noggit/world_tile_update_queue.hpp"
+#include "noggit/world_model_instances_storage.hpp"
+#include "opengl/primitives.hpp"
+#include "opengl/shader.fwd.hpp"
 
 #include <boost/optional/optional.hpp>
 

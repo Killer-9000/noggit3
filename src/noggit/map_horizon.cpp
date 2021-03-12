@@ -2,11 +2,11 @@
 
 #include "map_horizon.h"
 
-#include <noggit/MPQ.h>
-#include <util/Log.h>
-#include <noggit/map_index.hpp>
-#include <noggit/World.h>
-#include <opengl/context.hpp>
+#include "noggit/MPQ.h"
+#include "util/log.h"
+#include "noggit/map_index.hpp"
+#include "noggit/World.h"
+#include "opengl/context.hpp"
 
 #include <sstream>
 

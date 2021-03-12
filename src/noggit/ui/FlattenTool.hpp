@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <noggit/tool_enums.hpp>
-#include <math/vector_3d.hpp>
+#include "noggit/tool_enums.hpp"
+#include "math/vector_3d.hpp"
 
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>

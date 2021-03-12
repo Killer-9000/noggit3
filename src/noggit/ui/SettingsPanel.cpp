@@ -1,9 +1,9 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/SettingsPanel.h>
+#include "noggit/ui/SettingsPanel.h"
 
-#include <noggit/TextureManager.h>
-#include <util/qt/overload.hpp>
+#include "noggit/TextureManager.h"
+#include "util/qt/overload.hpp"
 
 
 #include <QtWidgets/QDialogButtonBox>

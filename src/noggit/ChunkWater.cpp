@@ -1,10 +1,10 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ChunkWater.hpp>
-#include <noggit/liquid_layer.hpp>
-#include <noggit/MPQ.h>
-#include <noggit/MapChunk.h>
-#include <noggit/Misc.h>
+#include "noggit/ChunkWater.hpp"
+#include "noggit/liquid_layer.hpp"
+#include "noggit/MPQ.h"
+#include "noggit/MapChunk.h"
+#include "noggit/Misc.h"
 
 ChunkWater::ChunkWater(float x, float z, bool use_mclq_green_lava)
   : xbase(x)

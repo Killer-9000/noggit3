@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <opengl/context.hpp>
-#include <opengl/texture.hpp>
+#include "opengl/context.hpp"
+#include "opengl/texture.hpp"
 
 #include <boost/optional.hpp>
 
@@ -162,4 +162,4 @@ namespace opengl
   }
 }
 
-#include <opengl/scoped.ipp>
+#include "opengl/scoped.ipp"

@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <noggit/MapChunk.h>
-#include <noggit/Selection.h>
-#include <noggit/ui/widget.hpp>
+#include "noggit/MapChunk.h"
+#include "noggit/Selection.h"
+#include "noggit/ui/widget.hpp"
 
 #include <vector>
 

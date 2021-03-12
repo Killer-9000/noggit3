@@ -6,9 +6,9 @@
 #include <QtGui/QPainter>
 #include <QtWidgets/QMessageBox>
 
-#include <noggit/ui/font_noggit.hpp>
-#include <noggit/ui/font_noggit.hpp>
-#include <util/Log.h>
+#include "noggit/ui/font_noggit.hpp"
+#include "noggit/ui/font_noggit.hpp"
+#include "util/log.h"
 
 namespace noggit
 {

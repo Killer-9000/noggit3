@@ -1,13 +1,13 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/matrix_4x4.hpp>
-#include <math/vector_2d.hpp>
-#include <math/vector_3d.hpp>
-#include <math/vector_4d.hpp>
-#include <opengl/context.hpp>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.hpp>
-#include <opengl/texture.hpp>
+#include "math/matrix_4x4.hpp"
+#include "math/vector_2d.hpp"
+#include "math/vector_3d.hpp"
+#include "math/vector_4d.hpp"
+#include "opengl/context.hpp"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.hpp"
+#include "opengl/texture.hpp"
 
 #include <boost/filesystem/string_file.hpp>
 
@@ -251,7 +251,7 @@ namespace opengl
     void use_program::attrib_divisor(std::string const& name, GLuint divisor, GLsizei range)
     {
       GLuint const location (attrib_location (name));
-      for (GLuint i = 0; i < range; ++i)
+      for (GLsizei i = 0; i < range; ++i)
       {
         gl.vertexAttribDivisor(location + i, divisor);
       }

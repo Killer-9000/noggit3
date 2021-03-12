@@ -126,7 +126,7 @@ are similar.
  
 //! \note Use fully qualified paths rather than "../relative". Order
 //! includes with own first, then external dependencies, then c++ STL.
-#include <noggit/bar.hpp>
+#include "noggit/bar.hpp"
  
 //! \note Namespaces equal directories. (java style packages.)
 namespace noggit

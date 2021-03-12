@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <math/interpolation.hpp>
-#include <math/vector_4d.hpp>
+#include "math/interpolation.hpp"
+#include "math/vector_4d.hpp"
 
 #include <cstdint>
 

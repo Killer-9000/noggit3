@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <noggit/TextureManager.h>
-#include <noggit/ui/clickable_label.hpp>
-#include <noggit/tool_enums.hpp>
+#include "noggit/TextureManager.h"
+#include "noggit/ui/clickable_label.hpp"
+#include "noggit/tool_enums.hpp"
 
 #include <QtWidgets/QWidget>
 

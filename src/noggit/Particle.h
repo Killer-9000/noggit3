@@ -2,11 +2,11 @@
 
 #pragma once
 
-#include <noggit/Animated.h> // Animation::M2Value
-#include <noggit/Model.h>
-#include <noggit/TextureManager.h>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.fwd.hpp>
+#include "noggit/Animated.h" // Animation::M2Value
+#include "noggit/Model.h"
+#include "noggit/TextureManager.h"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.fwd.hpp"
 
 #include <list>
 #include <memory>

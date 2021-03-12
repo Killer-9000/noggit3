@@ -1,14 +1,14 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/frustum.hpp>
-#include <noggit/AsyncLoader.h>
-#include <util/Log.h> // LogDebug
-#include <noggit/ModelManager.h> // ModelManager
-#include <noggit/TextureManager.h> // TextureManager, Texture
-#include <noggit/WMO.h>
-#include <noggit/World.h>
-#include <opengl/primitives.hpp>
-#include <opengl/scoped.hpp>
+#include "math/frustum.hpp"
+#include "noggit/AsyncLoader.h"
+#include "util/log.h" // LogDebug
+#include "noggit/ModelManager.h" // ModelManager
+#include "noggit/TextureManager.h" // TextureManager, Texture
+#include "noggit/WMO.h"
+#include "noggit/World.h"
+#include "opengl/primitives.hpp"
+#include "opengl/scoped.hpp"
 
 #include <boost/algorithm/string.hpp>
 
@@ -307,7 +307,7 @@ void WMO::finishLoading ()
   assert (fourcc == 'MFOG');
 
   int nfogs = size / 0x30;
-  for (size_t i (0); i < nfogs; ++i) {
+  for (int i (0); i < nfogs; ++i) {
     WMOFog fog;
     fog.init (&f);
     fogs.push_back (fog);
@@ -421,7 +421,7 @@ bool WMO::draw_skybox ( math::matrix_4x4 const& model_view
     return false;
   }
 
-  for (int i=0; i<groups.size(); ++i)
+  for (size_t i=0; i<groups.size(); ++i)
   {
     auto const& g = groups[i];
 
@@ -461,7 +461,7 @@ std::map<uint32_t, std::vector<wmo_doodad_instance>> WMO::doodads_per_group(uint
   auto const& dset = doodadsets[doodadset];
   uint32_t start = dset.start, end = start + dset.size;
 
-  for (int i = 0; i < groups.size(); ++i)
+  for (size_t i = 0; i < groups.size(); ++i)
   {
     for (uint16_t ref : groups[i].doodad_ref())
     {
@@ -943,7 +943,7 @@ void WMOGroup::load()
     std::vector<CImVector> mocv_2(size / sizeof(CImVector));
     f.read(mocv_2.data(), size);
 
-    for (int i = 0; i < mocv_2.size(); ++i)
+    for (size_t i = 0; i < mocv_2.size(); ++i)
     {
       float alpha = static_cast<float>(mocv_2[i].a) / 255.f;
 
@@ -1011,7 +1011,7 @@ void WMOGroup::load_mocv(MPQFile& f, uint32_t size)
       interior_batchs_start = _batches[header.transparency_batches_count - 1].vertex_end + 1;
     }
 
-    for (int n = interior_batchs_start; n < _vertex_colors.size(); ++n)
+    for (size_t n = interior_batchs_start; n < _vertex_colors.size(); ++n)
     {
       _vertex_colors[n].w = header.flags.exterior ? 1.f : 0.f;
     }
@@ -1047,7 +1047,7 @@ void WMOGroup::fix_vertex_color_alpha()
     wmo_ambient_color.w = 0.f;
   }
 
-  for (int i = 0; i < _vertex_colors.size(); ++i)
+  for (size_t i = 0; i < _vertex_colors.size(); ++i)
   {
     auto& color = _vertex_colors[i];
     float r = color.x;

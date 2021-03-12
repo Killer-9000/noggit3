@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include <noggit/ModelInstance.h>
-#include <noggit/Selection.h>
-#include <noggit/tile_index.hpp>
-#include <noggit/WMOInstance.h>
+#include "noggit/ModelInstance.h"
+#include "noggit/Selection.h"
+#include "noggit/tile_index.hpp"
+#include "noggit/WMOInstance.h"
 
 
 #include <atomic>

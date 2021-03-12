@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <noggit/ui/font_awesome.hpp>
+#include "noggit/ui/font_awesome.hpp"
 
 #include <QtGui/QIcon>
 

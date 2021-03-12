@@ -2,15 +2,15 @@
 
 #pragma once
 
-#include <math/ray.hpp>
-#include <math/vector_3d.hpp> // math::vector_3d
-#include <noggit/MPQ.h> // MPQFile
-#include <noggit/MapHeaders.h> // ENTRY_MDDF
-#include <noggit/ModelManager.h>
-#include <noggit/Selection.h>
-#include <noggit/tile_index.hpp>
-#include <noggit/tool_enums.hpp>
-#include <opengl/shader.fwd.hpp>
+#include "math/ray.hpp"
+#include "math/vector_3d.hpp" // math::vector_3d
+#include "noggit/MPQ.h" // MPQFile
+#include "noggit/MapHeaders.h" // ENTRY_MDDF
+#include "noggit/ModelManager.h"
+#include "noggit/Selection.h"
+#include "noggit/tile_index.hpp"
+#include "noggit/tool_enums.hpp"
+#include "opengl/shader.fwd.hpp"
 
 namespace math { class frustum; }
 class Model;
@@ -57,6 +57,11 @@ public:
     , _transform_mat_inverted(other._transform_mat_inverted)
   {
   }
+
+  virtual ~ModelInstance() 
+  {
+  }
+
   ModelInstance& operator= (ModelInstance&& other)
   {
     std::swap (model, other.model);
@@ -126,6 +131,10 @@ public:
     , world_pos (other.world_pos)
     , _need_matrix_update(other._need_matrix_update)
   {
+  }
+
+  virtual ~wmo_doodad_instance() 
+  { 
   }
 
   wmo_doodad_instance& operator= (wmo_doodad_instance&& other)

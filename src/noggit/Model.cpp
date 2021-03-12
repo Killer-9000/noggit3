@@ -1,14 +1,14 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/bounding_box.hpp>
-#include <noggit/AsyncLoader.h>
-#include <util/Log.h>
-#include <noggit/Model.h>
-#include <noggit/ModelInstance.h>
-#include <noggit/TextureManager.h> // TextureManager, Texture
-#include <noggit/World.h>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.hpp>
+#include "math/bounding_box.hpp"
+#include "noggit/AsyncLoader.h"
+#include "util/log.h"
+#include "noggit/Model.h"
+#include "noggit/ModelInstance.h"
+#include "noggit/TextureManager.h" // TextureManager, Texture
+#include "noggit/World.h"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.hpp"
 
 #include <algorithm>
 #include <cassert>
@@ -562,7 +562,7 @@ void Model::fix_shader_id_layer()
     if (need_reducing)
     {
       previous_render_flag = -1;
-      for (int i = 0; i < passes.size(); ++i)
+      for (size_t i = 0; i < passes.size(); ++i)
       {
         auto& pass = _render_passes[i];
         uint16_t renderflag_index = pass.renderflag_index;

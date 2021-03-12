@@ -1,15 +1,15 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/TexturePicker.h>
+#include "noggit/ui/TexturePicker.h"
 
-#include <noggit/ui/font_awesome.hpp>
-#include <noggit/ui/font_noggit.hpp>
-#include <noggit/Selection.h>
-#include <noggit/texture_set.hpp>
-#include <noggit/ui/CurrentTexture.h>
-#include <noggit/ui/TexturingGUI.h>
-#include <noggit/World.h>
-#include <noggit/tool_enums.hpp>
+#include "noggit/ui/font_awesome.hpp"
+#include "noggit/ui/font_noggit.hpp"
+#include "noggit/Selection.h"
+#include "noggit/texture_set.hpp"
+#include "noggit/ui/CurrentTexture.h"
+#include "noggit/ui/TexturingGUI.h"
+#include "noggit/World.h"
+#include "noggit/tool_enums.hpp"
 
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QPushButton>
@@ -101,7 +101,7 @@ namespace noggit
     {
       auto&& selectedTexture = selected_texture::get();
       auto ts = _chunk->texture_set.get();
-      for (int i = 1; i < ts->num(); i++)
+      for (size_t i = 1; i < ts->num(); i++)
       {
         if (ts->texture(i) == selectedTexture)
         {
@@ -116,7 +116,7 @@ namespace noggit
     {
       auto&& selectedTexture = selected_texture::get();
       auto ts = _chunk->texture_set.get();
-      for (int i = 0; i < ts->num() - 1; i++)
+      for (size_t i = 0; i < ts->num() - 1; i++)
       {
         if (ts->texture(i) == selectedTexture)
         {

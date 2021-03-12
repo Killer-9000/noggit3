@@ -30,9 +30,9 @@ add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=unused)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=unused-parameter)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=unused-private-field)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=missing-variable-declarations)
-add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=missing-prototypes)
+# add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=missing-prototypes)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=deprecated)
-add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=missing-braces)
+# add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=missing-braces)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=inconsistent-missing-override)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=parentheses)
 add_compiler_flag_if_supported (CMAKE_CXX_FLAGS -Werror=shift-sign-overflow)
@@ -302,7 +302,11 @@ set ( opengl_sources
 
 set ( util_sources
       src/util/exception_to_string.cpp
-      src/util/Log.cpp
+      src/util/log.cpp
+    )
+set ( util_headers
+      src/util/exception_to_string.hpp
+      src/util/log.h
     )
 
 set ( noggit_root_headers
@@ -430,10 +434,12 @@ set ( shaders
     )
 
 if (ENABLE_NETWORKING)
-  set ( network
+  set ( network_sources
         src/network/session.cpp
-        src/network/session.h
         src/network/packet.cpp
+      )
+  set ( network_headers
+        src/network/session.h
         src/network/packet.h
       )
 endif()
@@ -475,10 +481,10 @@ source_group("opengl"  FILES ${opengl_sources} ${opengl_headers})
 source_group("math"  FILES ${math_sources} ${math_headers})
 source_group("external"  FILES ${external_sources} ${external_headers})
 source_group("os"  FILES ${os_sources} ${os_headers})
-source_group("util"  FILES ${util_sources})
+source_group("util"  FILES ${util_sources} ${util_headers})
 source_group("glsl"  FILES ${shaders})
 if (ENABLE_NETWORKING)
-source_group("network"  FILES ${network})
+source_group("network"  FILES ${network_sources} ${network_headers})
 endif()
 
 qt5_add_resources (compiled_resource_files "resources/resources.qrc")
@@ -494,6 +500,7 @@ ADD_EXECUTABLE ( noggit
                   ${mysql_sources}
                   ${os_sources}
                   ${util_sources}
+                  ${network_sources}
                   ${noggit_root_headers}
                   ${noggit_ui_headers}
                   ${opengl_headers}
@@ -501,12 +508,13 @@ ADD_EXECUTABLE ( noggit
                   ${external_headers}
                   ${mysql_headers}
                   ${os_headers}
+                  ${util_headers}
+                  ${network_headers}
                   ${ResFiles}
                   ${moced}
                   ${compiled_resource_files}
                   ${shaders}
                   ${force_update_file}
-                  ${network}
                 )
                 
 TARGET_LINK_LIBRARIES (noggit

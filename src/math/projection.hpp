@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <math/matrix_4x4.hpp>
-#include <math/trig.hpp>
-#include <math/vector_3d.hpp>
+#include "math/matrix_4x4.hpp"
+#include "math/trig.hpp"
+#include "math/vector_3d.hpp"
 
 namespace math
 {

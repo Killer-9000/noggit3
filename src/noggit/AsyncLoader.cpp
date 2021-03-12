@@ -1,7 +1,7 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/AsyncLoader.h>
-#include <noggit/errorHandling.h>
+#include "noggit/AsyncLoader.h"
+#include "noggit/errorHandling.h"
 
 #include <QtCore/QSettings>
 
@@ -49,9 +49,16 @@ void AsyncLoader::process()
 
     try
     {
-      LOG_DEBUG("Loading '%s'", object->filename.c_str());
+      QSettings settings;
+      bool additional_log = settings.value("additional_file_loading_log", false).toBool();
+      
+      if (additional_log)
+        LOG_DEBUG("Loading '%s'", object->filename.c_str());
+
       object->finishLoading();
-      LOG_DEBUG("Loaded '%s'", object->filename.c_str());
+
+      if (additional_log)
+        LOG_DEBUG("Loaded '%s'", object->filename.c_str());
 
       std::lock_guard<std::mutex> const lock (_guard);
       _currently_loading.remove (object);

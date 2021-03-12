@@ -1,12 +1,12 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/DBC.h>
-#include <util/Log.h>
-#include <noggit/Model.h> // Model
-#include <noggit/ModelManager.h> // ModelManager
-#include <noggit/Sky.h>
-#include <noggit/World.h>
-#include <opengl/shader.hpp>
+#include "noggit/DBC.h"
+#include "util/log.h"
+#include "noggit/Model.h" // Model
+#include "noggit/ModelManager.h" // ModelManager
+#include "noggit/Sky.h"
+#include "noggit/World.h"
+#include "opengl/shader.hpp"
 
 #include <algorithm>
 #include <string>

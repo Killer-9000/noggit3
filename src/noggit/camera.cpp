@@ -1,6 +1,6 @@
-#include <noggit/camera.hpp>
+#include "noggit/camera.hpp"
 
-#include <math/projection.hpp>
+#include "math/projection.hpp"
 
 namespace noggit
 {

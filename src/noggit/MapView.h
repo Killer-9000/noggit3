@@ -2,16 +2,16 @@
 
 #pragma once
 
-#include <math/ray.hpp>
-#include <math/vector_4d.hpp>
-#include <noggit/Misc.h>
-#include <noggit/Selection.h>
-#include <noggit/bool_toggle_property.hpp>
-#include <noggit/camera.hpp>
-#include <noggit/tool_enums.hpp>
-#include <noggit/ui/ObjectEditor.h>
-#include <noggit/ui/uid_fix_window.hpp>
-#include <noggit/unsigned_int_property.hpp>
+#include "math/ray.hpp"
+#include "math/vector_4d.hpp"
+#include "noggit/Misc.h"
+#include "noggit/Selection.h"
+#include "noggit/bool_toggle_property.hpp"
+#include "noggit/camera.hpp"
+#include "noggit/tool_enums.hpp"
+#include "noggit/ui/ObjectEditor.h"
+#include "noggit/ui/uid_fix_window.hpp"
+#include "noggit/unsigned_int_property.hpp"
 
 #include <boost/optional.hpp>
 

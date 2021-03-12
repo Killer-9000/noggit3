@@ -1,21 +1,21 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/MapView.h>
-#include <noggit/Misc.h>
-#include <noggit/ModelInstance.h>
-#include <noggit/WMOInstance.h> // WMOInstance
-#include <noggit/World.h>
-#include <noggit/ui/HelperModels.h>
-#include <noggit/ui/ModelImport.h>
-#include <noggit/ui/ObjectEditor.h>
-#include <noggit/ui/RotationEditor.h>
-#include <noggit/ui/checkbox.hpp>
-#include <util/qt/overload.hpp>
+#include "noggit/MapView.h"
+#include "noggit/Misc.h"
+#include "noggit/ModelInstance.h"
+#include "noggit/WMOInstance.h" // WMOInstance
+#include "noggit/World.h"
+#include "noggit/ui/HelperModels.h"
+#include "noggit/ui/ModelImport.h"
+#include "noggit/ui/ObjectEditor.h"
+#include "noggit/ui/RotationEditor.h"
+#include "noggit/ui/checkbox.hpp"
+#include "util/qt/overload.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>
 
-#include <QFormLayout>
 #include <QGridLayout>
+#include <QFormLayout>
 #include <QGroupBox>
 #include <QCheckBox>
 #include <QRadioButton>
@@ -107,7 +107,7 @@ namespace noggit
       scaleRangeEnd->setRange (-180.f, 180.f);
       
       rotation_layout->addWidget(rotRangeStart, 0, 0);
-      rotation_layout->addWidget(rotRangeEnd, 0 ,1);
+      rotation_layout->addWidget(rotRangeEnd, 0, 1);
       copy_layout->addRow(rotation_group);
 
       tilt_layout->addWidget(tiltRangeStart, 0, 0);
@@ -133,7 +133,7 @@ namespace noggit
 
       paste_layout->addWidget(terrainButton, 0, 0);
       paste_layout->addWidget(selectionButton, 0, 1);
-      paste_layout->addWidget(cameraButton, 1, 0);
+      paste_layout->addWidget(cameraButton, 0, 2);
 
       auto object_movement_box (new QGroupBox("Single Selection Movement", this));
       auto object_movement_layout = new QFormLayout (object_movement_box);
@@ -194,20 +194,19 @@ namespace noggit
       QPushButton *visToggleButton = new QPushButton("Toggle Hidden Models Visibility", this);
       QPushButton *clearListButton = new QPushButton("Clear Hidden Models List", this);
 
-      QGroupBox *importBox = new QGroupBox(this);
-      new QGridLayout (importBox);
-      importBox->setTitle("Import");
+      QGroupBox *importBox = new QGroupBox("Import", this);
+      auto importBoxLayout = new QGridLayout(importBox);
 
       QPushButton *toTxt = new QPushButton("To Text File", this);
       QPushButton *fromTxt = new QPushButton("From Text File", this);
       QPushButton *last_m2_from_wmv = new QPushButton("Last M2 from WMV", this);
       QPushButton *last_wmo_from_wmv = new QPushButton("Last WMO from WMV", this);
       QPushButton *helper_models_btn = new QPushButton("Helper Models", this);
-      importBox->layout()->addWidget(toTxt);
-      importBox->layout()->addWidget(fromTxt);
-      importBox->layout()->addWidget(last_m2_from_wmv);
-      importBox->layout()->addWidget(last_wmo_from_wmv);
-      importBox->layout()->addWidget(helper_models_btn);
+      importBoxLayout->addWidget(toTxt, 0, 0);
+      importBoxLayout->addWidget(fromTxt, 0, 1);
+      importBoxLayout->addWidget(last_m2_from_wmv, 1, 0);
+      importBoxLayout->addWidget(last_wmo_from_wmv, 1, 1);
+      importBoxLayout->addWidget(helper_models_btn, 2, 0, 1, 2);
 
       layout->addRow(copyBox);
       layout->addRow(pasteBox);

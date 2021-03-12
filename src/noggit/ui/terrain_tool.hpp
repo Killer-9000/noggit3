@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <math/trig.hpp>
-#include <math/vector_3d.hpp>
-#include <noggit/tool_enums.hpp>
+#include "math/trig.hpp"
+#include "math/vector_3d.hpp"
+#include "noggit/tool_enums.hpp"
 
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDial>

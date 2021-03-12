@@ -1,6 +1,6 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/TexturingGUI.h>
+#include "noggit/ui/TexturingGUI.h"
 
 #include <algorithm>
 #include <list>
@@ -9,11 +9,11 @@
 #include <string>
 #include <vector>
 
-#include <noggit/DBC.h>
-#include <noggit/Misc.h>
-#include <noggit/MPQ.h>
-#include <noggit/TextureManager.h> // TextureManager, Texture
-#include <noggit/ui/TextureList.hpp>
+#include "noggit/DBC.h"
+#include "noggit/Misc.h"
+#include "noggit/MPQ.h"
+#include "noggit/TextureManager.h" // TextureManager, Texture
+#include "noggit/ui/TextureList.hpp"
 
 #include <unordered_set>
 

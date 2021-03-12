@@ -1,13 +1,13 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/bounding_box.hpp>
-#include <math/matrix_4x4.hpp>
-#include <math/vector_4d.hpp>
-#include <noggit/Misc.h>
-#include <opengl/context.hpp>
-#include <opengl/primitives.hpp>
-#include <opengl/scoped.hpp>
-#include <opengl/types.hpp>
+#include "math/bounding_box.hpp"
+#include "math/matrix_4x4.hpp"
+#include "math/vector_4d.hpp"
+#include "noggit/Misc.h"
+#include "opengl/context.hpp"
+#include "opengl/primitives.hpp"
+#include "opengl/scoped.hpp"
+#include "opengl/types.hpp"
 
 #include <array>
 

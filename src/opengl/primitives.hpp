@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <opengl/scoped.hpp>
-#include <opengl/shader.hpp>
+#include "opengl/scoped.hpp"
+#include "opengl/shader.hpp"
 
 #include <memory>
 

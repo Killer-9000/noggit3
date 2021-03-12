@@ -1,20 +1,20 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/frustum.hpp>
-#include <math/quaternion.hpp>
-#include <math/vector_3d.hpp>
-#include <noggit/Brush.h>
-#include <noggit/TileWater.hpp>
-#include <util/Log.h>
-#include <noggit/MapChunk.h>
-#include <noggit/MapHeaders.h>
-#include <noggit/Misc.h>
-#include <noggit/World.h>
-#include <noggit/alphamap.hpp>
-#include <noggit/texture_set.hpp>
-#include <noggit/tool_enums.hpp>
-#include <noggit/ui/TexturingGUI.h>
-#include <opengl/scoped.hpp>
+#include "math/frustum.hpp"
+#include "math/quaternion.hpp"
+#include "math/vector_3d.hpp"
+#include "noggit/Brush.h"
+#include "noggit/TileWater.hpp"
+#include "util/log.h"
+#include "noggit/MapChunk.h"
+#include "noggit/MapHeaders.h"
+#include "noggit/Misc.h"
+#include "noggit/World.h"
+#include "noggit/alphamap.hpp"
+#include "noggit/texture_set.hpp"
+#include "noggit/tool_enums.hpp"
+#include "noggit/ui/TexturingGUI.h"
+#include "opengl/scoped.hpp"
 
 #include <algorithm>
 #include <iostream>
@@ -563,7 +563,7 @@ void MapChunk::draw ( math::frustum const& frustum
   {
     texture_set->bind_alpha(0);
 
-    for (int i = 0; i < texture_set->num(); ++i)
+    for (size_t i = 0; i < texture_set->num(); ++i)
     {
       texture_set->bindTexture(i, i + 1);
 
@@ -607,7 +607,7 @@ void MapChunk::draw ( math::frustum const& frustum
   gl.drawElements(GL_TRIANGLES, _lod_level_indice_count, GL_UNSIGNED_SHORT, nullptr);
 
 
-  for (int i = 0; i < texture_set->num(); ++i)
+  for (size_t i = 0; i < texture_set->num(); ++i)
   {
     if (texture_set->is_animated(i))
     {
@@ -623,7 +623,7 @@ void MapChunk::intersect (math::ray const& ray, selection_result* results)
     return;
   }
 
-  for (int i (0); i < strip_without_holes.size(); i += 3)
+  for (size_t i (0); i < strip_without_holes.size(); i += 3)
   {
     if ( auto distance = ray.intersect_triangle ( mVertices[strip_without_holes[i + 0]]
                                                 , mVertices[strip_without_holes[i + 1]]
@@ -1131,7 +1131,7 @@ void MapChunk::save(sExtendableArray &lADTFile, int &lCurrentPosition, int &lMCI
 
   std::vector<uint8_t> lod_texture_map = texture_set->lod_texture_map();
 
-  for (int i = 0; i < lod_texture_map.size(); ++i)
+  for (size_t i = 0; i < lod_texture_map.size(); ++i)
   {
     const size_t array_index(i / 4);
     // it's a uint2 array so we need to write the uint2 in the order they will be on disk,

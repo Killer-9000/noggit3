@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <math/quaternion.hpp>
-#include <math/trig.hpp>
+#include "math/quaternion.hpp"
+#include "math/trig.hpp"
 
 #include <algorithm>
 

@@ -1,10 +1,10 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/HelperModels.h>
+#include "noggit/ui/HelperModels.h"
 
-#include <noggit/MapView.h>
-#include <noggit/TextureManager.h>
-#include <noggit/ui/ObjectEditor.h>
+#include "noggit/MapView.h"
+#include "noggit/TextureManager.h"
+#include "noggit/ui/ObjectEditor.h"
 
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>

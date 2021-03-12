@@ -1,14 +1,14 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/RotationEditor.h>
+#include "noggit/ui/RotationEditor.h"
 
-#include <noggit/Misc.h>
-#include <noggit/ModelInstance.h>
-#include <noggit/Selection.h>
-#include <noggit/WMOInstance.h>
-#include <noggit/World.h>
-#include <util/qt/overload.hpp>
-#include <noggit/ui/ObjectEditor.h>
+#include "noggit/Misc.h"
+#include "noggit/ModelInstance.h"
+#include "noggit/Selection.h"
+#include "noggit/WMOInstance.h"
+#include "noggit/World.h"
+#include "util/qt/overload.hpp"
+#include "noggit/ui/ObjectEditor.h"
 
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QLabel>

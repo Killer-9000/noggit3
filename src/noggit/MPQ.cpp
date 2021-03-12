@@ -1,8 +1,8 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/AsyncLoader.h> // AsyncLoader
-#include <util/Log.h>
-#include <noggit/MPQ.h>
+#include "noggit/AsyncLoader.h" // AsyncLoader
+#include "util/log.h"
+#include "noggit/MPQ.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>

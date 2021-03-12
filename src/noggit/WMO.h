@@ -2,16 +2,16 @@
 
 #pragma once
 
-#include <math/quaternion.hpp>
-#include <math/ray.hpp>
-#include <math/vector_3d.hpp>
-#include <noggit/MPQ.h>
-#include <noggit/ModelInstance.h> // ModelInstance
-#include <noggit/ModelManager.h>
-#include <noggit/multimap_with_normalized_key.hpp>
-#include <noggit/TextureManager.h>
-#include <noggit/tool_enums.hpp>
-#include <noggit/wmo_liquid.hpp>
+#include "math/quaternion.hpp"
+#include "math/ray.hpp"
+#include "math/vector_3d.hpp"
+#include "noggit/MPQ.h"
+#include "noggit/ModelInstance.h" // ModelInstance
+#include "noggit/ModelManager.h"
+#include "noggit/multimap_with_normalized_key.hpp"
+#include "noggit/TextureManager.h"
+#include "noggit/tool_enums.hpp"
+#include "noggit/wmo_liquid.hpp"
 
 #include <boost/optional.hpp>
 

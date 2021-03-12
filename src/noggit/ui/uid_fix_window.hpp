@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <math/vector_3d.hpp>
-#include <math/trig.hpp>
+#include "math/vector_3d.hpp"
+#include "math/trig.hpp"
 
 #include <QtWidgets/QDialog>
 

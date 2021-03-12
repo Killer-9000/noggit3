@@ -3,9 +3,9 @@
 #pragma once
 
 
-#include <noggit/MPQ.h>
-#include <noggit/TextureManager.h>
-#include <opengl/shader.hpp>
+#include "noggit/MPQ.h"
+#include "noggit/TextureManager.h"
+#include "opengl/shader.hpp"
 
 #include <string>
 #include <vector>

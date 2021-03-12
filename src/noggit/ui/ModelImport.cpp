@@ -1,12 +1,12 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/ModelImport.h>
+#include "noggit/ui/ModelImport.h"
 
-#include <noggit/MapView.h>
-#include <noggit/ModelInstance.h>
-#include <noggit/Selection.h>
-#include <noggit/WMOInstance.h>
-#include <noggit/ui/ObjectEditor.h>
+#include "noggit/MapView.h"
+#include "noggit/ModelInstance.h"
+#include "noggit/Selection.h"
+#include "noggit/WMOInstance.h"
+#include "noggit/ui/ObjectEditor.h"
 
 #include <fstream>
 #include <regex>

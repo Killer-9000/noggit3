@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <noggit/map_enums.hpp>
+#include "noggit/map_enums.hpp"
 
 #include <atomic>
 #include <condition_variable>

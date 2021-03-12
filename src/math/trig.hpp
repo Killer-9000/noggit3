@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <math/constants.hpp>
-#include <math/vector_3d.hpp>
+#include "math/constants.hpp"
+#include "math/vector_3d.hpp"
 
 #include <cmath>
 
@@ -51,7 +51,7 @@ namespace math
 
     friend std::ostream& operator<< (std::ostream& os, degrees const& v)
     {
-      return os << v << "°";
+      return os << v._ << "°";
     }
 
     using vec3 = vector_3d_base<degrees>;

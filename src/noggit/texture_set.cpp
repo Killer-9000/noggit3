@@ -1,12 +1,12 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/Brush.h>
-#include <util/Log.h>
-#include <noggit/MapTile.h>
-#include <noggit/Misc.h>
-#include <noggit/TextureManager.h> // TextureManager, Texture
-#include <noggit/World.h>
-#include <noggit/texture_set.hpp>
+#include "noggit/Brush.h"
+#include "util/log.h"
+#include "noggit/MapTile.h"
+#include "noggit/Misc.h"
+#include "noggit/TextureManager.h" // TextureManager, Texture
+#include "noggit/World.h"
+#include "noggit/texture_set.hpp"
 
 #include <algorithm>    // std::min
 #include <iostream>     // std::cout
@@ -296,7 +296,7 @@ bool TextureSet::eraseUnusedTextures()
 
     for (int i = 0; i < 4096 && visible_tex.size() < nTextures; ++i)
     {
-      for (int layer = 0; layer < nTextures; ++layer)
+      for (size_t layer = 0; layer < nTextures; ++layer)
       {
         if (amaps[layer][i] > 0.f)
         {
@@ -310,7 +310,7 @@ bool TextureSet::eraseUnusedTextures()
     for (int i = 0; i < 4096 && visible_tex.size() < nTextures; ++i)
     {
       uint8_t sum = 0;
-      for (int n = 0; n < nTextures - 1; ++n)
+      for (size_t n = 0; n < nTextures - 1; ++n)
       {
         uint8_t a = alphamaps[n]->getAlpha(i);
         sum += a;
@@ -348,7 +348,7 @@ bool TextureSet::eraseUnusedTextures()
 
 int TextureSet::get_texture_index_or_add (scoped_blp_texture_reference texture, float target)
 {
-  for (int i = 0; i < nTextures; ++i)
+  for (size_t i = 0; i < nTextures; ++i)
   {
     if (textures[i] == texture)
     {
@@ -412,7 +412,7 @@ bool TextureSet::paintTexture(float xbase, float zbase, float x, float z, Brush*
 
         if (!misc::float_equals(current_alpha, strength))
         {
-          for (int layer = 0; layer < nTextures; ++layer)
+          for (size_t layer = 0; layer < nTextures; ++layer)
           {
             if (layer == tex_layer)
             {
@@ -474,7 +474,7 @@ bool TextureSet::replace_texture( float xbase
   int old_tex_level = -1, new_tex_level = -1;
   float x_pos, z_pos = zbase;
 
-  for (int i=0; i<nTextures; ++i)
+  for (size_t i=0; i<nTextures; ++i)
   {
     if (textures[i] == texture_to_replace)
     {
@@ -595,7 +595,7 @@ std::vector<std::vector<uint8_t>> TextureSet::save_alpha(bool big_alphamap)
   {
     if (big_alphamap)
     {
-      for (int i = 0; i < nTextures - 1; ++i)
+      for (size_t i = 0; i < nTextures - 1; ++i)
       {
         const uint8_t* alphamap = alphamaps[i]->getAlpha();
         amaps.emplace_back(alphamap, alphamap + 4096);
@@ -834,14 +834,14 @@ void TextureSet::bind_alpha(std::size_t id)
         std::vector<uint8_t> amap(3 * 64 * 64);
         uint8_t const* alpha_ptr[3];
 
-        for (int i = 0; i < nTextures - 1; ++i)
+        for (size_t i = 0; i < nTextures - 1; ++i)
         {
           alpha_ptr[i] = alphamaps[i]->getAlpha();
         }
 
         for (int i = 0; i < 64 * 64; ++i)
         {
-          for (int alpha_id = 0; alpha_id < 3; ++alpha_id)
+          for (size_t alpha_id = 0; alpha_id < 3; ++alpha_id)
           {
             amap[i * 3 + alpha_id] = (alpha_id < nTextures - 1)
                                    ? *(alpha_ptr[alpha_id]++)
@@ -949,7 +949,7 @@ bool TextureSet::apply_alpha_changes()
 
   auto& new_amaps = tmp_edit_values.get();
 
-  for (int alpha_layer = 0; alpha_layer < nTextures - 1; ++alpha_layer)
+  for (size_t alpha_layer = 0; alpha_layer < nTextures - 1; ++alpha_layer)
   {
     std::array<std::uint8_t, 64 * 64> values;
 
@@ -984,7 +984,7 @@ void TextureSet::create_temporary_alphamaps_if_needed()
   {
     float base_alpha = 1.f;
 
-    for (int alpha_layer = 0; alpha_layer < nTextures-1; ++alpha_layer)
+    for (size_t alpha_layer = 0; alpha_layer < nTextures-1; ++alpha_layer)
     {
       float f = static_cast<float>(alphamaps[alpha_layer]->getAlpha(i)) / 255.f;
 

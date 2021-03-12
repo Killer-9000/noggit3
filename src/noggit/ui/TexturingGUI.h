@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <noggit/TextureManager.h>
-#include <noggit/ui/widget.hpp>
+#include "noggit/TextureManager.h"
+#include "noggit/ui/widget.hpp"
 
 #include <boost/optional.hpp>
 

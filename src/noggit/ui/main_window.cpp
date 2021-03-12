@@ -1,15 +1,15 @@
-#include <noggit/ui/main_window.hpp>
+#include "noggit/ui/main_window.hpp"
 
-#include <noggit/DBC.h>
-#include <noggit/DBCFile.h>
-#include <util/Log.h>
-#include <noggit/World.h>
-#include <noggit/ui/About.h>
-#include <noggit/MapView.h>
-#include <noggit/ui/SettingsPanel.h>
-#include <noggit/ui/minimap_widget.hpp>
-#include <noggit/ui/uid_fix_window.hpp>
-#include <noggit/uid_storage.hpp>
+#include "noggit/DBC.h"
+#include "noggit/DBCFile.h"
+#include "util/log.h"
+#include "noggit/World.h"
+#include "noggit/ui/About.h"
+#include "noggit/MapView.h"
+#include "noggit/ui/SettingsPanel.h"
+#include "noggit/ui/minimap_widget.hpp"
+#include "noggit/ui/uid_fix_window.hpp"
+#include "noggit/uid_storage.hpp"
 
 #include <QtGui/QCloseEvent>
 #include <QtWidgets/QHBoxLayout>
@@ -22,7 +22,7 @@
 #include <QtWidgets/QWidget>
 
 #ifdef USE_MYSQL_UID_STORAGE
-  #include <mysql/mysql.h>
+  #include "mysql/mysql.h"
 
   #include <QtCore/QSettings>
 #endif

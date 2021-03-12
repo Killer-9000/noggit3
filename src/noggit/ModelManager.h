@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <noggit/Model.h>
-#include <noggit/multimap_with_normalized_key.hpp>
+#include "noggit/Model.h"
+#include "noggit/multimap_with_normalized_key.hpp"
 
 #include <map>
 #include <string>

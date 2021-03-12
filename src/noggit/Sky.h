@@ -2,12 +2,12 @@
 
 #pragma once
 
-#include <math/vector_3d.hpp>
-#include <noggit/DBCFile.h>
-#include <noggit/MPQ.h>
-#include <noggit/ModelInstance.h>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.fwd.hpp>
+#include "math/vector_3d.hpp"
+#include "noggit/DBCFile.h"
+#include "noggit/MPQ.h"
+#include "noggit/ModelInstance.h"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.fwd.hpp"
 
 #include <memory>
 #include <string>

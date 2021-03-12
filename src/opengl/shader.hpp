@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <opengl/shader.fwd.hpp>
-#include <opengl/types.hpp>
+#include "opengl/shader.fwd.hpp"
+#include "opengl/types.hpp"
 
 #include <boost/optional.hpp>
 

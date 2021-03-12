@@ -1,11 +1,11 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/DBC.h>
-#include <util/Log.h>
-#include <noggit/World.h>
-#include <noggit/wmo_liquid.hpp>
-#include <opengl/context.hpp>
-#include <opengl/shader.hpp>
+#include "noggit/DBC.h"
+#include "util/log.h"
+#include "noggit/World.h"
+#include "noggit/wmo_liquid.hpp"
+#include "opengl/context.hpp"
+#include "opengl/shader.hpp"
 
 #include <boost/filesystem.hpp>
 #include <boost/format.hpp>

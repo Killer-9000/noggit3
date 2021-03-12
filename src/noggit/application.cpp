@@ -1,19 +1,19 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/AsyncLoader.h>
-#include <noggit/DBC.h>
-#include <util/Log.h>
-#include <noggit/MPQ.h>
-#include <noggit/MapView.h>
-#include <noggit/Model.h>
-#include <noggit/ModelManager.h> // ModelManager::report()
-#include <noggit/TextureManager.h> // TextureManager::report()
-#include <noggit/WMO.h> // WMOManager::report()
-#include <noggit/errorHandling.h>
-#include <noggit/liquid_layer.hpp>
-#include <noggit/ui/main_window.hpp>
-#include <opengl/context.hpp>
-#include <util/exception_to_string.hpp>
+#include "noggit/AsyncLoader.h"
+#include "noggit/DBC.h"
+#include "noggit/MPQ.h"
+#include "noggit/MapView.h"
+#include "noggit/Model.h"
+#include "noggit/ModelManager.h" // ModelManager::report()
+#include "noggit/TextureManager.h" // TextureManager::report()
+#include "noggit/WMO.h" // WMOManager::report()
+#include "noggit/errorHandling.h"
+#include "noggit/liquid_layer.hpp"
+#include "noggit/ui/main_window.hpp"
+#include "opengl/context.hpp"
+#include "util/exception_to_string.hpp"
+#include "util/log.h"
 
 #include <boost/filesystem.hpp>
 #include <boost/thread/thread.hpp>
@@ -111,7 +111,7 @@ void Noggit::loadMPQs()
   const char * locale("****");
 
   // Find locale, take first one.
-  for (int i(0); i < locales.size(); ++i)
+  for (size_t i(0); i < locales.size(); ++i)
   {
     if (boost::filesystem::exists (wowpath / "Data" / locales[i] / "realmlist.wtf"))
     {

@@ -1,11 +1,11 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/vector_2d.hpp>
-#include <noggit/TextureManager.h>
-#include <util/Log.h> // LogDebug
-#include <opengl/context.hpp>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.hpp>
+#include "math/vector_2d.hpp"
+#include "noggit/TextureManager.h"
+#include "util/log.h" // LogDebug
+#include "opengl/context.hpp"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.hpp"
 
 #include <QtCore/QString>
 #include <QtGui/QOffscreenSurface>
@@ -51,7 +51,7 @@ struct BLPHeader
 #pragma pack(pop)
 
 #include <boost/thread.hpp>
-#include <noggit/MPQ.h>
+#include "noggit/MPQ.h"
 
 void blp_texture::bind()
 {

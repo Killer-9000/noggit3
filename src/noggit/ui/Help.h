@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include <noggit/ui/widget.hpp>
-#include <noggit/ui/font_noggit.hpp>
+#include "noggit/ui/widget.hpp"
+#include "noggit/ui/font_noggit.hpp"
 
 class QFormLayout;
 

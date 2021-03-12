@@ -1,9 +1,9 @@
 #pragma once
 
-#include <math/vector_3d.hpp>
-#include <math/trig.hpp>
-#include <noggit/World.h>
-#include <noggit/ui/uid_fix_window.hpp>
+#include "math/vector_3d.hpp"
+#include "math/trig.hpp"
+#include "noggit/World.h"
+#include "noggit/ui/uid_fix_window.hpp"
 
 #include <QtWidgets/QMainWindow>
 

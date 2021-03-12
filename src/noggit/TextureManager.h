@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <noggit/AsyncObject.h>
-#include <noggit/multimap_with_normalized_key.hpp>
-#include <opengl/texture.hpp>
+#include "noggit/AsyncObject.h"
+#include "noggit/multimap_with_normalized_key.hpp"
+#include "opengl/texture.hpp"
 
 #include <boost/optional.hpp>
 

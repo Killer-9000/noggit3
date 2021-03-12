@@ -1,12 +1,12 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/DBC.h>
-#include <util/Log.h>
-#include <noggit/Misc.h>
-#include <noggit/World.h>
-#include <noggit/ui/pushbutton.hpp>
-#include <noggit/ui/Water.h>
-#include <util/qt/overload.hpp>
+#include "noggit/DBC.h"
+#include "util/log.h"
+#include "noggit/Misc.h"
+#include "noggit/World.h"
+#include "noggit/ui/pushbutton.hpp"
+#include "noggit/ui/Water.h"
+#include "util/qt/overload.hpp"
 
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>

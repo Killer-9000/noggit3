@@ -1,8 +1,8 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/world_model_instances_storage.hpp>
+#include "noggit/world_model_instances_storage.hpp"
 
-#include <noggit/World.h>
+#include "noggit/World.h"
 
 namespace noggit
 {

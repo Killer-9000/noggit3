@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include <noggit/AsyncLoader.h>
-#include <noggit/AsyncObject.h>
-#include <util/Log.h>
-#include <noggit/MPQ.h>
+#include "noggit/AsyncLoader.h"
+#include "noggit/AsyncObject.h"
+#include "util/log.h"
+#include "noggit/MPQ.h"
 
 #include <boost/thread.hpp>
 

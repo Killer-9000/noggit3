@@ -1,13 +1,13 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/texture_swapper.hpp>
+#include "noggit/ui/texture_swapper.hpp"
 
-#include <math/vector_3d.hpp>
-#include <noggit/ui/TexturingGUI.h>
-#include <noggit/World.h>
-#include <noggit/tool_enums.hpp>
+#include "math/vector_3d.hpp"
+#include "noggit/ui/TexturingGUI.h"
+#include "noggit/World.h"
+#include "noggit/tool_enums.hpp"
 
-#include <util/qt/overload.hpp>
+#include "util/qt/overload.hpp"
 
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QLabel>
@@ -102,7 +102,7 @@ namespace noggit
 
     void texture_swapper::set_texture(std::string const& filename)
     {
-      _texture_to_swap = std::move(scoped_blp_texture_reference(filename));
+      _texture_to_swap = scoped_blp_texture_reference(filename);
     }
   }
 }

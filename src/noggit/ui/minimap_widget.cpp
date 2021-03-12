@@ -1,14 +1,14 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/minimap_widget.hpp>
+#include "noggit/ui/minimap_widget.hpp"
 
 #include <QPaintEvent>
 #include <QPainter>
 #include <QToolTip>
 
-#include <noggit/Sky.h>
-#include <noggit/World.h>
-#include <noggit/camera.hpp>
+#include "noggit/Sky.h"
+#include "noggit/World.h"
+#include "noggit/camera.hpp"
 
 namespace noggit
 {

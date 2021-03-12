@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <noggit/MPQ.h>
-#include <noggit/alphamap.hpp>
-#include <noggit/MapHeaders.h>
+#include "noggit/MPQ.h"
+#include "noggit/alphamap.hpp"
+#include "noggit/MapHeaders.h"
 
 #include <cstdint>
 #include <array>

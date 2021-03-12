@@ -2,11 +2,11 @@
 
 #pragma once
 
-#include <math/vector_3d.hpp>
-#include <noggit/bool_toggle_property.hpp>
-#include <noggit/Brush.h>
-#include <noggit/TextureManager.h>
-#include <noggit/unsigned_int_property.hpp>
+#include "math/vector_3d.hpp"
+#include "noggit/bool_toggle_property.hpp"
+#include "noggit/Brush.h"
+#include "noggit/TextureManager.h"
+#include "noggit/unsigned_int_property.hpp"
 
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDial>
@@ -71,7 +71,7 @@ namespace noggit
 
       current_texture* _current_texture;
 
-      texture_swapper* const texture_swap_tool() { return _texture_switcher; }
+      texture_swapper* texture_swap_tool() { return _texture_switcher; }
 
       QSize sizeHint() const override;
 

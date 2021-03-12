@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include <noggit/bool_toggle_property.hpp>
-#include <noggit/tile_index.hpp>
-#include <noggit/ui/checkbox.hpp>
-#include <noggit/unsigned_int_property.hpp>
+#include "noggit/bool_toggle_property.hpp"
+#include "noggit/tile_index.hpp"
+#include "noggit/ui/checkbox.hpp"
+#include "noggit/unsigned_int_property.hpp"
 
 class QDoubleSpinBox;
 class QGroupBox;

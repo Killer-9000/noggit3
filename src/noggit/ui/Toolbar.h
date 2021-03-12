@@ -7,8 +7,8 @@
 #include <QtWidgets/QActionGroup>
 #include <QtWidgets/QToolBar>
 
-#include <noggit/tool_enums.hpp>
-#include <noggit/ui/font_awesome.hpp>
+#include "noggit/tool_enums.hpp"
+#include "noggit/ui/font_awesome.hpp"
 
 namespace noggit
 {

@@ -1,5 +1,5 @@
-#include <noggit/errorHandling.h>
-#include <util/Log.h>
+#include "noggit/errorHandling.h"
+#include "util/log.h"
 
 #include <csignal>
 #include <string>

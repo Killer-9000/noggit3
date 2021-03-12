@@ -1,9 +1,9 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/World.h>
-#include <noggit/ui/shader_tool.hpp>
-#include <util/qt/overload.hpp>
-#include <noggit/ui/font_awesome.hpp>
+#include "noggit/World.h"
+#include "noggit/ui/shader_tool.hpp"
+#include "util/qt/overload.hpp"
+#include "noggit/ui/font_awesome.hpp"
 
 #include <qt-color-widgets/color_selector.hpp>
 #include <qt-color-widgets/color_wheel.hpp>

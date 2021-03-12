@@ -2,16 +2,16 @@
 
 #pragma once
 
-#include <math/ray.hpp>
-#include <noggit/map_enums.hpp>
-#include <noggit/MapChunk.h>
-#include <noggit/MapHeaders.h>
-#include <noggit/Selection.h>
-#include <noggit/TileWater.hpp>
-#include <noggit/tile_index.hpp>
-#include <noggit/tool_enums.hpp>
-#include <opengl/shader.fwd.hpp>
-#include <noggit/Misc.h>
+#include "math/ray.hpp"
+#include "noggit/map_enums.hpp"
+#include "noggit/MapChunk.h"
+#include "noggit/MapHeaders.h"
+#include "noggit/Selection.h"
+#include "noggit/TileWater.hpp"
+#include "noggit/tile_index.hpp"
+#include "noggit/tool_enums.hpp"
+#include "opengl/shader.fwd.hpp"
+#include "noggit/Misc.h"
 
 #include <map>
 #include <string>

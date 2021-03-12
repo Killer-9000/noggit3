@@ -1,26 +1,26 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/World.h>
+#include "noggit/World.h"
 
-#include <math/frustum.hpp>
-#include <noggit/Brush.h> // brush
-#include <noggit/ChunkWater.hpp>
-#include <noggit/DBC.h>
-#include <util/Log.h>
-#include <noggit/MapChunk.h>
-#include <noggit/MapTile.h>
-#include <noggit/Misc.h>
-#include <noggit/ModelManager.h> // ModelManager
-#include <noggit/TextureManager.h>
-#include <noggit/TileWater.hpp>// tile water
-#include <noggit/WMOInstance.h> // WMOInstance
-#include <noggit/map_index.hpp>
-#include <noggit/texture_set.hpp>
-#include <noggit/tool_enums.hpp>
-#include <noggit/ui/ObjectEditor.h>
-#include <noggit/ui/TexturingGUI.h>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.hpp>
+#include "math/frustum.hpp"
+#include "noggit/Brush.h" // brush
+#include "noggit/ChunkWater.hpp"
+#include "noggit/DBC.h"
+#include "util/log.h"
+#include "noggit/MapChunk.h"
+#include "noggit/MapTile.h"
+#include "noggit/Misc.h"
+#include "noggit/ModelManager.h" // ModelManager
+#include "noggit/TextureManager.h"
+#include "noggit/TileWater.hpp"// tile water
+#include "noggit/WMOInstance.h" // WMOInstance
+#include "noggit/map_index.hpp"
+#include "noggit/texture_set.hpp"
+#include "noggit/tool_enums.hpp"
+#include "noggit/ui/ObjectEditor.h"
+#include "noggit/ui/TexturingGUI.h"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.hpp"
 
 #include <boost/filesystem.hpp>
 #include <boost/range/adaptor/map.hpp>
@@ -663,7 +663,7 @@ void World::rotate_selected_models_to_ground_normal(bool smoothNormals)
     // We shouldn't end up with empty ever.
     if (results.empty())
     {
-      LogError << "rotate_selected_models_to_ground_normal ray intersection failed" << std::endl;
+      LOG_ERROR("rotate_selected_models_to_ground_normal ray intersection failed.");
       continue;
     }
 

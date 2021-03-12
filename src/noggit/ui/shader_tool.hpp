@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <math/vector_4d.hpp>
+#include "math/vector_4d.hpp"
 
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QSlider>

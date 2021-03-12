@@ -1,11 +1,11 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/world_tile_update_queue.hpp>
+#include "noggit/world_tile_update_queue.hpp"
 
-#include <util/Log.h>
-#include <noggit/ModelInstance.h>
-#include <noggit/WMOInstance.h>
-#include <noggit/World.h>
+#include "util/log.h"
+#include "noggit/ModelInstance.h"
+#include "noggit/WMOInstance.h"
+#include "noggit/World.h"
 
 
 namespace noggit
@@ -37,9 +37,9 @@ namespace noggit
       auto const& extents(instance->extents());
       tile_index start(extents[0]), end(extents[1]);
 
-      for (int z = start.z; z <= end.z; ++z)
+      for (size_t z = start.z; z <= end.z; ++z)
       {
-        for (int x = start.x; x <= end.x; ++x)
+        for (size_t x = start.x; x <= end.x; ++x)
         {
           world->mapIndex.update_model_tile(tile_index(x, z), update_type, instance->uid);
         }
@@ -69,9 +69,9 @@ namespace noggit
 
     virtual void apply(World* const world) override
     {
-      for (int z = start.z; z <= end.z; ++z)
+      for (size_t z = start.z; z <= end.z; ++z)
       {
-        for (int x = start.x; x <= end.x; ++x)
+        for (size_t x = start.x; x <= end.x; ++x)
         {
           world->mapIndex.update_model_tile(tile_index(x, z), update_type, uid);
         }

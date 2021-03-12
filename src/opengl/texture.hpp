@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <opengl/types.hpp>
+#include "opengl/types.hpp"
 
 namespace opengl
 {

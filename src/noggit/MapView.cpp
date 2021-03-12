@@ -1,40 +1,40 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/projection.hpp>
-#include <noggit/Brush.h> // brush
-#include <noggit/DBC.h>
-#include <util/Log.h>
-#include <noggit/MapChunk.h>
-#include <noggit/MapView.h>
-#include <noggit/Misc.h>
-#include <noggit/ModelManager.h> // ModelManager
-#include <noggit/TextureManager.h> // TextureManager, Texture
-#include <noggit/WMOInstance.h> // WMOInstance
-#include <noggit/World.h>
-#include <noggit/map_index.hpp>
-#include <noggit/uid_storage.hpp>
-#include <noggit/ui/CurrentTexture.h>
-#include <noggit/ui/CursorSwitcher.h> // cursor_switcher
-#include <noggit/ui/DetailInfos.h> // detailInfos
-#include <noggit/ui/FlattenTool.hpp>
-#include <noggit/ui/Help.h>
-#include <noggit/ui/HelperModels.h>
-#include <noggit/ui/ModelImport.h>
-#include <noggit/ui/ObjectEditor.h>
-#include <noggit/ui/RotationEditor.h>
-#include <noggit/ui/TexturePicker.h>
-#include <noggit/ui/TexturingGUI.h>
-#include <noggit/ui/Toolbar.h> // noggit::ui::toolbar
-#include <noggit/ui/Water.h>
-#include <noggit/ui/ZoneIDBrowser.h>
-#include <noggit/ui/main_window.hpp>
-#include <noggit/ui/minimap_widget.hpp>
-#include <noggit/ui/shader_tool.hpp>
-#include <noggit/ui/terrain_tool.hpp>
-#include <noggit/ui/texture_swapper.hpp>
-#include <noggit/ui/texturing_tool.hpp>
-#include <noggit/ui/texture_palette_small.hpp>
-#include <opengl/scoped.hpp>
+#include "math/projection.hpp"
+#include "noggit/Brush.h" // brush
+#include "noggit/DBC.h"
+#include "util/log.h"
+#include "noggit/MapChunk.h"
+#include "noggit/MapView.h"
+#include "noggit/Misc.h"
+#include "noggit/ModelManager.h" // ModelManager
+#include "noggit/TextureManager.h" // TextureManager, Texture
+#include "noggit/WMOInstance.h" // WMOInstance
+#include "noggit/World.h"
+#include "noggit/map_index.hpp"
+#include "noggit/uid_storage.hpp"
+#include "noggit/ui/CurrentTexture.h"
+#include "noggit/ui/CursorSwitcher.h" // cursor_switcher
+#include "noggit/ui/DetailInfos.h" // detailInfos
+#include "noggit/ui/FlattenTool.hpp"
+#include "noggit/ui/Help.h"
+#include "noggit/ui/HelperModels.h"
+#include "noggit/ui/ModelImport.h"
+#include "noggit/ui/ObjectEditor.h"
+#include "noggit/ui/RotationEditor.h"
+#include "noggit/ui/TexturePicker.h"
+#include "noggit/ui/TexturingGUI.h"
+#include "noggit/ui/Toolbar.h" // noggit::ui::toolbar
+#include "noggit/ui/Water.h"
+#include "noggit/ui/ZoneIDBrowser.h"
+#include "noggit/ui/main_window.hpp"
+#include "noggit/ui/minimap_widget.hpp"
+#include "noggit/ui/shader_tool.hpp"
+#include "noggit/ui/terrain_tool.hpp"
+#include "noggit/ui/texture_swapper.hpp"
+#include "noggit/ui/texturing_tool.hpp"
+#include "noggit/ui/texture_palette_small.hpp"
+#include "opengl/scoped.hpp"
 
 #include "revision.h"
 
@@ -119,6 +119,8 @@ void MapView::setToolPropertyWidgetVisibility(editing_mode mode)
     break;
   case editing_mode::object:
     _object_editor_dock->setVisible(!ui_hidden);
+    break;
+  default:
     break;
   }
 
@@ -1605,6 +1607,8 @@ void MapView::tick (float dt)
       case editing_mode::object:
         update_cursor_pos();
         break;
+      default:
+        break;
     }    
   }
   else
@@ -1623,6 +1627,8 @@ void MapView::tick (float dt)
       break;
     case editing_mode::paint:
       texturingTool->set_pressure(_tablet_pressure);
+      break;
+    default:
       break;
     }
   }
@@ -1932,6 +1938,8 @@ void MapView::tick (float dt)
               shaderTool->changeShader(_world.get(), _cursor_pos, dt, false);
             }
           }
+          break;
+        default:
           break;
         }
       }
@@ -2387,6 +2395,8 @@ void MapView::draw_map()
   case editing_mode::mccv:
     radius = shaderTool->brushRadius();
     break;
+  default:
+    break;
   }
 
   //! \note Select terrain below mouse, if no item selected or the item is map.
@@ -2559,6 +2569,8 @@ void MapView::keyPressEvent (QKeyEvent *event)
         shaderTool->addColorToPalette();
         break;
       }
+      default:
+        break;
     }
   }
   if (event->key() == Qt::Key_Minus)
@@ -2745,6 +2757,8 @@ void MapView::mouseMoveEvent (QMouseEvent* event)
     case editing_mode::mccv:
       shaderTool->changeRadius(relative_movement.dx() / XSENS);
       break;
+    default:
+      break;
     }
   }
 
@@ -2763,6 +2777,8 @@ void MapView::mouseMoveEvent (QMouseEvent* event)
       break;
     case editing_mode::mccv:
       shaderTool->changeSpeed(relative_movement.dx() / XSENS);
+      break;
+    default:
       break;
     }
   }
@@ -2829,15 +2845,13 @@ void MapView::mousePressEvent(QMouseEvent* event)
 
   case Qt::MiddleButton:
     if (_world->has_selection())
-    {
       MoveObj = true;
-    }
 
     if(terrainMode == editing_mode::mccv)
-    {
       shaderTool->pickColor(_world.get(), _cursor_pos);
-    }
 
+    break;
+  default:
     break;
   }
 
@@ -2956,6 +2970,8 @@ void MapView::mouseReleaseEvent (QMouseEvent* event)
 
   case Qt::MiddleButton:
     MoveObj = false;
+    break;
+  default:
     break;
   }
 }

@@ -1,11 +1,11 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/vector_2d.hpp>
-#include <math/vector_3d.hpp>
-#include <math/vector_4d.hpp>
-#include <util/Log.h>
-#include <opengl/context.hpp>
-#include <opengl/scoped.hpp>
+#include "math/vector_2d.hpp"
+#include "math/vector_3d.hpp"
+#include "math/vector_4d.hpp"
+#include "util/log.h"
+#include "opengl/context.hpp"
+#include "opengl/scoped.hpp"
 
 #include <boost/current_function.hpp>
 

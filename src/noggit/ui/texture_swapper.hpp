@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <math/vector_3d.hpp>
-#include <noggit/ui/CurrentTexture.h>
-#include <noggit/TextureManager.h>
+#include "math/vector_3d.hpp"
+#include "noggit/ui/CurrentTexture.h"
+#include "noggit/TextureManager.h"
 
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGroupBox>
@@ -51,7 +51,7 @@ namespace noggit
 
       void set_texture(std::string const& filename);
 
-      current_texture* const texture_display() { return _texture_to_swap_display; }
+      current_texture* texture_display() { return _texture_to_swap_display; }
 
     private:
       boost::optional<scoped_blp_texture_reference> _texture_to_swap;

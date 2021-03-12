@@ -4,12 +4,12 @@
 
 // #define USEBLSFILES
 
-#include <math/vector_2d.hpp>
-#include <math/vector_3d.hpp>
-#include <noggit/MPQ.h>
-#include <noggit/TextureManager.h>
-#include <noggit/liquid_render.hpp>
-#include <opengl/scoped.hpp>
+#include "math/vector_2d.hpp"
+#include "math/vector_3d.hpp"
+#include "noggit/MPQ.h"
+#include "noggit/TextureManager.h"
+#include "noggit/liquid_render.hpp"
+#include "opengl/scoped.hpp"
 
 #include <boost/optional.hpp>
 

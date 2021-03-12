@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <math/trig.hpp>
+#include "math/trig.hpp"
 
 namespace math
 {

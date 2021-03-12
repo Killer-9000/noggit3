@@ -2,13 +2,13 @@
 
 #pragma once
 
-#include <math/frustum.hpp>
+#include "math/frustum.hpp"
 
-#include <noggit/tool_enums.hpp>
+#include "noggit/tool_enums.hpp"
 
-#include <opengl/texture.hpp>
-#include <opengl/scoped.hpp>
-#include <opengl/shader.fwd.hpp>
+#include "opengl/texture.hpp"
+#include "opengl/scoped.hpp"
+#include "opengl/shader.fwd.hpp"
 
 #include <QtGui/QImage>
 

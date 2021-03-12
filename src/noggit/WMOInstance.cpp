@@ -1,14 +1,14 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <math/bounding_box.hpp>
-#include <util/Log.h>
-#include <noggit/MapHeaders.h>
-#include <noggit/Misc.h> // checkinside
-#include <noggit/ModelInstance.h>
-#include <noggit/WMO.h> // WMO
-#include <noggit/WMOInstance.h>
-#include <opengl/primitives.hpp>
-#include <opengl/scoped.hpp>
+#include "math/bounding_box.hpp"
+#include "util/log.h"
+#include "noggit/MapHeaders.h"
+#include "noggit/Misc.h" // checkinside
+#include "noggit/ModelInstance.h"
+#include "noggit/WMO.h" // WMO
+#include "noggit/WMOInstance.h"
+#include "opengl/primitives.hpp"
+#include "opengl/scoped.hpp"
 
 WMOInstance::WMOInstance(std::string const& filename, ENTRY_MODF const* d)
   : wmo(filename)
@@ -243,7 +243,7 @@ std::vector<wmo_doodad_instance*> WMOInstance::get_visible_doodads
 
   if (!wmo->is_hidden() || draw_hidden_models)
   {
-    for (int i = 0; i < wmo->groups.size(); ++i)
+    for (size_t i = 0; i < wmo->groups.size(); ++i)
     {
       if (wmo->groups[i].is_visible(_transform_mat, frustum, cull_distance, camera, display))
       {

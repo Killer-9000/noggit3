@@ -1,6 +1,6 @@
 #include <boost/test/included/unit_test.hpp>
 
-#include <math/vector_2d.hpp>
+#include "math/vector_2d.hpp"
 
 namespace math
 {

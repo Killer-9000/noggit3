@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <math/vector_3d.hpp>
-#include <math/vector_4d.hpp>
-#include <math/matrix_4x4.hpp>
+#include "math/vector_3d.hpp"
+#include "math/vector_4d.hpp"
+#include "math/matrix_4x4.hpp"
 
 #include <array>
 #include <vector>

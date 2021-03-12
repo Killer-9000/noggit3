@@ -3,10 +3,10 @@
 #pragma once
 
 #include <boost/optional.hpp>
-#include <math/trig.hpp>
-#include <math/vector_3d.hpp>
-#include <math/vector_4d.hpp>
-#include <util/Log.h>
+#include "math/trig.hpp"
+#include "math/vector_3d.hpp"
+#include "math/vector_4d.hpp"
+#include "util/log.h"
 
 #include <algorithm>
 #include <cassert>
@@ -15,7 +15,7 @@
 #include <cstring>
 #include <string>
 #include <vector>
-#include <noggit/Selection.h>
+#include "noggit/Selection.h"
 
 // namespace for static helper functions.
 

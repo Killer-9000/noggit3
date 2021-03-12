@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <noggit/DBCFile.h>
+#include "noggit/DBCFile.h"
 
 #include <string>
 

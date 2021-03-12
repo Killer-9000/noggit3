@@ -1,10 +1,10 @@
 // This file is part of Noggit3, licensed under GNU General Public License (version 3).
 
-#include <noggit/ui/texture_palette_small.hpp>
+#include "noggit/ui/texture_palette_small.hpp"
 
-#include <noggit/ui/font_awesome.hpp>
-#include <noggit/ui/TexturingGUI.h>
-#include <noggit/ui/CurrentTexture.h>
+#include "noggit/ui/font_awesome.hpp"
+#include "noggit/ui/TexturingGUI.h"
+#include "noggit/ui/CurrentTexture.h"
 
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QPushButton>
