@@ -17,8 +17,8 @@
 #include "noggit/map_index.hpp"
 #include "noggit/texture_set.hpp"
 #include "noggit/tool_enums.hpp"
-#include "noggit/ui/ObjectEditor.h"
-#include "noggit/ui/TexturingGUI.h"
+#include "ui/object_editor.h"
+#include "ui/texturing_gui.h"
 #include "opengl/scoped.hpp"
 #include "opengl/shader.hpp"
 

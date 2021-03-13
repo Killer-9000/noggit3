@@ -3,14 +3,14 @@
 #include "noggit/AsyncLoader.h"
 #include "noggit/DBC.h"
 #include "noggit/MPQ.h"
-#include "noggit/MapView.h"
+#include "ui/map_view.h"
 #include "noggit/Model.h"
 #include "noggit/ModelManager.h" // ModelManager::report()
 #include "noggit/TextureManager.h" // TextureManager::report()
 #include "noggit/WMO.h" // WMOManager::report()
 #include "noggit/errorHandling.h"
 #include "noggit/liquid_layer.hpp"
-#include "noggit/ui/main_window.hpp"
+#include "ui/main_window.hpp"
 #include "opengl/context.hpp"
 #include "util/exception_to_string.hpp"
 #include "util/log.h"
@@ -278,9 +278,9 @@ Noggit::Noggit(int argc, char *argv[])
 
   opengl::context::scoped_setter const _ (::gl, &context);
 
-  LOG_DEBUG("GL: Version: %s.", gl.getString (GL_VERSION));
-  LOG_DEBUG("GL: Vendor: %s.", gl.getString (GL_VENDOR));
-  LOG_DEBUG("GL: Renderer: %s.", gl.getString (GL_RENDERER));
+  LOG_INFO("GL: Version: %s.", gl.getString (GL_VERSION));
+  LOG_INFO("GL: Vendor: %s.", gl.getString (GL_VENDOR));
+  LOG_INFO("GL: Renderer: %s.", gl.getString (GL_RENDERER));
 
   main_window = std::make_unique<noggit::ui::main_window>();
   if (fullscreen)

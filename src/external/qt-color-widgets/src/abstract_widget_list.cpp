@@ -20,7 +20,7 @@
  *
  */
 #include "qt-color-widgets/abstract_widget_list.hpp"
-#include <../../noggit/ui/font_awesome.hpp>
+#include <../../ui/font_awesome.hpp>
 #include <QToolButton>
 #include <QVBoxLayout>
 #include <QHeaderView>

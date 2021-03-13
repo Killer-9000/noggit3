@@ -5,12 +5,11 @@
 
 using namespace boost::asio;
 
-// Packet structure
+// Base packet structure
 // EPACKET_OPCODE opcode
 // uint32_t       dataSize
 // uint8_t        data[dataSize]
 
-// MSG  : Bothways
 // CMSG : From Client
 // SMSG : From Server
 enum EPACKET_OPCODE : uint32_t
@@ -18,17 +17,27 @@ enum EPACKET_OPCODE : uint32_t
     MSG_ERROR = 0,
 
     /// Ping/Pong
-    /// --------------
+    /// -----------------
     SMSG_HELLO,
     CMSG_HELLO,
 
-    /// Getting Data
-    /// --------------
-    CMSG_GET_MAP_INFO,
-    SMSG_SEND_MAP_INFO,
+    /// both views Data
+    /// -----------------
+    CMSG_GET_MAP_LOCKS,
+    SMSG_SEND_MAP_LOCKS,
+    
+    CMSG_GET_USER_POSITIONS,
+    SMSG_SEND_USER_POSITIONS,
 
-    CMSG_CAN_OPEN_MAP,
-    SMSG_CAN_OPEN_MAP,
+    /// main_window Data
+    /// -----------------
+    CMSG_OPEN_MAP,
+    SMSG_OPEN_MAP_RESULT,
+
+    /// map_view Data
+    /// -----------------
+    CMSG_CLOSE_MAP,
+    SMSG_CLOSE_MAP,
 };
 
 class CSession;

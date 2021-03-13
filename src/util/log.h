@@ -3,8 +3,8 @@
 #pragma once
 
 #include <string>
+#include <thread>
 #include <fmt/printf.h>
-#include <boost/thread.hpp>
 #include <boost/thread/sync_queue.hpp>
 #include <QSettings>
 
@@ -25,7 +25,7 @@ namespace Logging
   {
   private:
     FILE* m_File = nullptr;
-    std::unique_ptr<boost::thread> m_LoggingThread;
+    std::thread m_LoggingThread;
     std::string m_LogFile = "./Log.txt";
     boost::sync_queue<std::string> m_Messages;
     std::atomic_bool stopThread;

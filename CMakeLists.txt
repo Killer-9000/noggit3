@@ -156,17 +156,9 @@ find_package( Qt5 REQUIRED COMPONENTS Widgets OpenGL OpenGLExtensions )
 
 
 if (USE_SQL)
-  find_library(MYSQL_LIBRARY
-    NAMES libmysql
-    HINTS "${CMAKE_SOURCE_DIR}/../Noggit3libs/mysql")
-  find_library(MYSQLCPPCONN_LIBRARY
-    NAMES mysqlcppconn
-    HINTS "${CMAKE_SOURCE_DIR}/../Noggit3libs/mysql/connector")
-  find_path (MYSQLCPPCONN_INCLUDE
-    NAMES cppconn/driver.h
-    HINTS "${CMAKE_SOURCE_DIR}/../Noggit3libs/mysql/connector")
-
-  if (MYSQL_LIBRARY AND MYSQLCPPCONN_LIBRARY AND MYSQLCPPCONN_INCLUDE)
+  find_package(MySQL REQUIRED)
+  
+  if (MYSQL_FOUND AND CPPCONN_FOUND)
     add_definitions ( -DUSE_MYSQL_UID_STORAGE )
 
     set ( mysql_sources
@@ -177,8 +169,8 @@ if (USE_SQL)
           src/mysql/mysql.h
         )
     source_group("mysql"  FILES ${mysql_sources} ${mysql_headers})
-  else()
-     message (FATAL_ERROR "MySQL lib or connector not found")
+  # else()
+    #  message (FATAL_ERROR "MySQL lib or connector not found")
   endif()
 endif()
 
@@ -227,7 +219,6 @@ set ( noggit_root_sources
       src/noggit/MPQ.cpp
       src/noggit/MapChunk.cpp
       src/noggit/MapTile.cpp
-      src/noggit/MapView.cpp
       src/noggit/Misc.cpp
       src/noggit/Model.cpp
       src/noggit/ModelInstance.cpp
@@ -255,34 +246,35 @@ set ( noggit_root_sources
     )
 
 set ( noggit_ui_sources
-      src/noggit/ui/About.cpp
-      src/noggit/ui/clickable_label.cpp
-      src/noggit/ui/CurrentTexture.cpp
-      src/noggit/ui/CursorSwitcher.cpp
-      src/noggit/ui/DetailInfos.cpp
-      src/noggit/ui/FlattenTool.cpp
-      src/noggit/ui/font_awesome.cpp
-      src/noggit/ui/font_noggit.cpp
-      src/noggit/ui/Help.cpp
-      src/noggit/ui/HelperModels.cpp
-      src/noggit/ui/ModelImport.cpp
-      src/noggit/ui/ObjectEditor.cpp
-      src/noggit/ui/RotationEditor.cpp
-      src/noggit/ui/TexturePicker.cpp
-      src/noggit/ui/texture_swapper.cpp
-      src/noggit/ui/TexturingGUI.cpp
-      src/noggit/ui/texturing_tool.cpp
-      src/noggit/ui/Toolbar.cpp
-      src/noggit/ui/SettingsPanel.cpp
-      src/noggit/ui/Water.cpp
-      src/noggit/ui/ZoneIDBrowser.cpp
-      src/noggit/ui/main_window.cpp
-      src/noggit/ui/minimap_widget.cpp
-      src/noggit/ui/shader_tool.cpp
-      src/noggit/ui/terrain_tool.cpp
-      src/noggit/ui/uid_fix_window.cpp
-      src/noggit/ui/texture_palette_small.cpp
-      src/noggit/ui/TextureList.cpp
+      src/ui/about.cpp
+      src/ui/clickable_label.cpp
+      src/ui/current_texture.cpp
+      src/ui/cursor_switcher.cpp
+      src/ui/detail_infos.cpp
+      src/ui/flatten_tool.cpp
+      src/ui/font_awesome.cpp
+      src/ui/font_noggit.cpp
+      src/ui/help.cpp
+      src/ui/helper_models.cpp
+      src/ui/map_view.cpp
+      src/ui/model_import.cpp
+      src/ui/object_editor.cpp
+      src/ui/rotation_editor.cpp
+      src/ui/texture_picker.cpp
+      src/ui/texture_swapper.cpp
+      src/ui/texturing_gui.cpp
+      src/ui/texturing_tool.cpp
+      src/ui/toolbar.cpp
+      src/ui/settings_panel.cpp
+      src/ui/water.cpp
+      src/ui/zone_id_browser.cpp
+      src/ui/main_window.cpp
+      src/ui/minimap_widget.cpp
+      src/ui/shader_tool.cpp
+      src/ui/terrain_tool.cpp
+      src/ui/uid_fix_window.cpp
+      src/ui/texture_palette_small.cpp
+      src/ui/texture_list.cpp
     )
 
 set ( math_sources
@@ -324,7 +316,6 @@ set ( noggit_root_headers
       src/noggit/MapChunk.h
       src/noggit/MapHeaders.h
       src/noggit/MapTile.h
-      src/noggit/MapView.h
       src/noggit/Misc.h
       src/noggit/Model.h
       src/noggit/ModelHeaders.h
@@ -355,34 +346,38 @@ set ( noggit_root_headers
     )
 
 set ( noggit_ui_headers
-      src/noggit/ui/About.h
-      src/noggit/ui/clickable_label.hpp
-      src/noggit/ui/CurrentTexture.h
-      src/noggit/ui/CursorSwitcher.h
-      src/noggit/ui/DetailInfos.h
-      src/noggit/ui/FlattenTool.hpp
-      src/noggit/ui/font_awesome.hpp
-      src/noggit/ui/font_noggit.hpp
-      src/noggit/ui/Help.h
-      src/noggit/ui/HelperModels.h
-      src/noggit/ui/ModelImport.h
-      src/noggit/ui/ObjectEditor.h
-      src/noggit/ui/RotationEditor.h
-      src/noggit/ui/TexturePicker.h
-      src/noggit/ui/texture_swapper.hpp
-      src/noggit/ui/TexturingGUI.h
-      src/noggit/ui/texturing_tool.hpp
-      src/noggit/ui/Toolbar.h
-      src/noggit/ui/SettingsPanel.h
-      src/noggit/ui/Water.h
-      src/noggit/ui/ZoneIDBrowser.h
-      src/noggit/ui/main_window.hpp
-      src/noggit/ui/minimap_widget.hpp
-      src/noggit/ui/shader_tool.hpp
-      src/noggit/ui/terrain_tool.hpp
-      src/noggit/ui/uid_fix_window.hpp
-      src/noggit/ui/texture_palette_small.hpp
-      src/noggit/ui/TextureList.hpp
+      src/ui/about.h
+      src/ui/bool_toggle_property.hpp
+      src/ui/checkbox.hpp
+      src/ui/clickable_label.hpp
+      src/ui/current_texture.h
+      src/ui/cursor_switcher.h
+      src/ui/detail_infos.h
+      src/ui/flatten_tool.hpp
+      src/ui/font_awesome.hpp
+      src/ui/font_noggit.hpp
+      src/ui/help.h
+      src/ui/helper_models.h
+      src/ui/map_view.h
+      src/ui/model_import.h
+      src/ui/object_editor.h
+      src/ui/push_button.hpp
+      src/ui/rotation_editor.h
+      src/ui/texture_picker.h
+      src/ui/texture_swapper.hpp
+      src/ui/texturing_gui.h
+      src/ui/texturing_tool.hpp
+      src/ui/toolbar.h
+      src/ui/settings_panel.h
+      src/ui/water.h
+      src/ui/zone_id_browser.h
+      src/ui/main_window.hpp
+      src/ui/minimap_widget.hpp
+      src/ui/shader_tool.hpp
+      src/ui/terrain_tool.hpp
+      src/ui/uid_fix_window.hpp
+      src/ui/texture_palette_small.hpp
+      src/ui/texture_list.hpp
     )
 
 set ( math_headers
@@ -456,27 +451,40 @@ ENDIF(WIN32)
 
 
 list (APPEND headers_to_moc
-  src/noggit/MapView.h
-  src/noggit/bool_toggle_property.hpp
-  src/noggit/ui/terrain_tool.hpp
-  src/noggit/ui/TexturePicker.h
-  src/noggit/ui/TexturingGUI.h
-  src/noggit/ui/Water.h
-  src/noggit/ui/ZoneIDBrowser.h
-  src/noggit/ui/clickable_label.hpp
-  src/noggit/ui/minimap_widget.hpp
-  src/noggit/ui/uid_fix_window.hpp
-  src/noggit/ui/widget.hpp
-  src/noggit/ui/texture_palette_small.hpp
-  src/noggit/ui/TextureList.hpp
-  src/noggit/ui/main_window.hpp
-  src/noggit/unsigned_int_property.hpp
-  src/noggit/ui/CurrentTexture.h
+  src/ui/about.h
+  src/ui/bool_toggle_property.hpp
+  src/ui/checkbox.hpp
+  src/ui/clickable_label.hpp
+  src/ui/current_texture.h
+  src/ui/flatten_tool.hpp
+  src/ui/helper_models.h
+  src/ui/main_window.hpp
+  src/ui/map_view.h
+  src/ui/minimap_widget.hpp
+  src/ui/model_import.h
+  src/ui/object_editor.h
+  src/ui/push_button.hpp
+  src/ui/rotation_editor.h
+  src/ui/settings_panel.h
+  src/ui/shader_tool.hpp
+  src/ui/terrain_tool.hpp
+  src/ui/texture_list.hpp
+  src/ui/texture_palette_small.hpp
+  src/ui/texture_picker.h
+  src/ui/texture_swapper.hpp
+  src/ui/texturing_gui.h
+  src/ui/texturing_tool.hpp
+  src/ui/toolbar.h
+  src/ui/uid_fix_window.hpp
+  src/ui/unsigned_int_property.hpp
+  src/ui/water.h
+  src/ui/widget.hpp
+  src/ui/zone_id_browser.h
 )
-qt5_wrap_cpp (moced ${headers_to_moc} ${headers_to_moc})
+qt5_wrap_cpp (moced ${headers_to_moc})
 
 source_group("noggit"  FILES ${noggit_root_sources} ${noggit_root_headers})
-source_group("noggit\\ui"  FILES ${noggit_ui_sources} ${noggit_ui_headers})
+source_group("ui"  FILES ${noggit_ui_sources} ${noggit_ui_headers})
 source_group("opengl"  FILES ${opengl_sources} ${opengl_headers})
 source_group("math"  FILES ${math_sources} ${math_headers})
 source_group("external"  FILES ${external_sources} ${external_headers})
@@ -572,9 +580,9 @@ if(APPLE)
   )
 endif()
 
-if (MYSQL_LIBRARY AND MYSQLCPPCONN_LIBRARY AND MYSQLCPPCONN_INCLUDE)
-  target_link_libraries (noggit ${MYSQL_LIBRARY} ${MYSQLCPPCONN_LIBRARY})
-  target_include_directories (noggit SYSTEM PRIVATE ${MYSQLCPPCONN_INCLUDE})
+if (MYSQL_FOUND AND CPPCONN_FOUND)
+  target_link_libraries (noggit ${MYSQL_LIBRARY} ${CPPCONN_LIBRARY})
+  target_include_directories (noggit SYSTEM PRIVATE ${MYSQL_INCLUDE} ${CPPCONN_INCLUDE})
 endif()
 
 if (NOGGIT_LOGTOCONSOLE AND WIN32)

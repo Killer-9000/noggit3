@@ -13,7 +13,7 @@
 #include "noggit/alphamap.hpp"
 #include "noggit/texture_set.hpp"
 #include "noggit/tool_enums.hpp"
-#include "noggit/ui/TexturingGUI.h"
+#include "ui/texturing_gui.h"
 #include "opengl/scoped.hpp"
 
 #include <algorithm>

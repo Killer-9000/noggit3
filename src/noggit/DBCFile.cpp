@@ -19,7 +19,7 @@ void DBCFile::open()
     LOG_ERROR("The DBC file '%s' could not be opened. This application may crash soon as the file is most likely needed.\n", filename.c_str());
     return;
   }
-  LOG_DEBUG("Opening DBC '%s'\n", filename.c_str());
+  LOG_DEBUG("Opening DBC '%s'", filename.c_str());
 
   char header[4];
 
